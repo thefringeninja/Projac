@@ -1,0 +1,48 @@
+{
+    "version": "0.0.142",
+    "title": "Recipes",
+    "description": "Recipes contains recipes on how to use Projac with various stores.",
+    "repository": {
+        "type": "git", 
+        "url": "git@github.com:yreynhout/Projac.git"
+    },
+    "projectUrl": "https://github.com/yreynhout/Projac",
+    "licenseUrl": "https://github.com/yreynhout/Projac/blob/master/LICENSE.txt",
+    "owners": [
+        "Yves Reynhout"
+    ],
+    "copyright": "(C) 2016 BitTacklr BVBA",
+    "authors": [
+        "Yves Reynhout"
+    ],
+    "compile": [
+        "**/*.cs",
+        "../SharedAssemblyInfo.cs",
+        "../SharedVersionInfo.cs"
+    ],
+    "compilationOptions": {
+        "languageVersion": "csharp6"
+    },
+    "dependencies": {
+        "Projac": "0.0.142",
+        "Projac.Connector": "0.0.142",
+        "NUnit": "3.2.0",
+        "NUnit.Runners": "3.2.0",
+        "CompareNETObjects": "3.5.0",
+        "Elasticsearch.Net": "1.8.0",
+        "EventStore.Client.Embedded": "3.5.2",
+        "Newtonsoft.Json": "8.0.3",
+        "RavenDB.Embedded": "3.0.30000",
+        "StackExchange.Redis": "1.0.488",
+        "WindowsAzure.Storage": "6.2.0"
+    },
+    "frameworks": {
+        "net46": {
+            "frameworkAssemblies": {
+                "System.Configuration": "",
+                "System.Data": "",
+                "System.Runtime.Caching": ""
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "version": "0.0.142",
+    "title": "Paramol.Tests",
+    "description": "Paramol.Tests contains the unit tests for Paramol.",
+    "repository": {
+        "type": "git", 
+        "url": "git@github.com:yreynhout/Projac.git"
+    },
+    "projectUrl": "https://github.com/yreynhout/Projac",
+    "licenseUrl": "https://github.com/yreynhout/Projac/blob/master/LICENSE.txt",
+    "owners": [
+        "Yves Reynhout"
+    ],
+    "copyright": "(C) 2016 BitTacklr BVBA",
+    "authors": [
+        "Yves Reynhout"
+    ],
+    "compile": [
+        "**/*.cs",
+        "../SharedAssemblyInfo.cs",
+        "../SharedVersionInfo.cs"
+    ],
+    "compilationOptions": {
+        "languageVersion": "csharp6"
+    },
+    "dependencies": {
+        "Paramol": "0.0.142",
+        "NUnit": "3.2.0"
+    },
+    "frameworks": {
+        "net46": {
+            "frameworkAssemblies": {
+                "System.Configuration": "",
+                "System.Data": ""
+            }
+        }
+    }
+}

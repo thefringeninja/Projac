@@ -72,7 +72,7 @@ namespace Projac.Connector
                             (connection, message, token) =>
                             {
                                 handler(connection, (TMessage) message);
-                                return Task.FromResult<object>(null);
+                                return Task.CompletedTask;
                             })
                     }).
                     ToArray());

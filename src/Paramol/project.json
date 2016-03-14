@@ -1,0 +1,35 @@
+{
+    "version": "0.0.142",
+    "title": "Paramol",
+    "description": "Paramol provides lightweight infrastructure for producing SQL DML statements.",
+    "repository": {
+        "type": "git", 
+        "url": "git@github.com:yreynhout/Projac.git"
+    },
+    "projectUrl": "https://github.com/yreynhout/Projac",
+    "licenseUrl": "https://github.com/yreynhout/Projac/blob/master/LICENSE.txt",
+    "owners": [
+        "Yves Reynhout"
+    ],
+    "copyright": "(C) 2016 BitTacklr BVBA",
+    "authors": [
+        "Yves Reynhout"
+    ],
+    "compile": [
+        "**/*.cs",
+        "../SharedAssemblyInfo.cs",
+        "../SharedVersionInfo.cs"
+    ],
+    "compilationOptions": {
+        "languageVersion": "csharp6",
+        "xmlDoc": true
+    },
+    "frameworks": {
+        "net46": {
+            "frameworkAssemblies": {
+                "System.Configuration": "",
+                "System.Data": ""
+            }
+        }
+    }
+}
