@@ -2,11 +2,16 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-    </PropertyGroup>
+			  <RootNamespace>Projac.Npgsql</RootNamespace>
+			  <Nullable>disable</Nullable>
+			  <NullableContextOptions>disable</NullableContextOptions>
+			  <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+			  <LangVersion>7.3</LangVersion>
+		</PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Npgsql" Version="4.1.3.1" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\Projac.Sql\Projac.Sql.csproj" />
+      <PackageReference Include="Projac.Sql" Version="0.1.0" />
     </ItemGroup>
 </Project>
