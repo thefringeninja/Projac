@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-#if NET46 || NET452
+﻿#if NET46 || NET452
 using System.Configuration;
 #endif
-using System.Data;
-using System.Threading;
 using NUnit.Framework;
 using Projac.Sql.Executors;
 

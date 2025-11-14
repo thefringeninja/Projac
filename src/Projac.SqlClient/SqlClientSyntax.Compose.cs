@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Projac.Sql;
+﻿using Projac.Sql;
 
 namespace Projac.SqlClient;
 

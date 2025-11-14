@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-
-namespace Projac.Tests;
+﻿namespace Projac.Tests;
 
 public class CallRecordingConnection
 {

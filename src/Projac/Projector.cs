@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Projac;
+﻿namespace Projac;
 
 /// <summary>
 /// Projects a single message or set of messages in an asynchronous manner to the matching handlers.

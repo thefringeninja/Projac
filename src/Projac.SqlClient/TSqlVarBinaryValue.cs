@@ -1,8 +1,6 @@
-using System;
 using System.Data;
 using System.Data.Common;
 using Microsoft.Data.SqlClient;
-using System.Linq;
 using Projac.Sql;
 
 namespace Projac.SqlClient;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Projac;
+﻿namespace Projac;
 
 /// <summary>
 ///     Represents a handler of a particular type of message.

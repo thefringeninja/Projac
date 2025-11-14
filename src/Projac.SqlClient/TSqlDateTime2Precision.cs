@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Projac.SqlClient;
+﻿namespace Projac.SqlClient;
 
 /// <summary>
 ///     Represents the precision of a <see cref="TSqlDateTime2Value" />.

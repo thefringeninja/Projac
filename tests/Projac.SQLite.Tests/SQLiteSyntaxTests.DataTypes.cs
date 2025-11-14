@@ -1,7 +1,5 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using NUnit.Framework;
-using Projac.SQLite;
 
 namespace Projac.SQLite.Tests;
 

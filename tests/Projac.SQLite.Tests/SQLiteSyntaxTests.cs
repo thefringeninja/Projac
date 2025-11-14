@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using Projac.SQLite;
 
 namespace Projac.SQLite.Tests;
 

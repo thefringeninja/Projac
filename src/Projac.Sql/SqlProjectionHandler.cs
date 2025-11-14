@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Projac.Sql;
+﻿namespace Projac.Sql;
 
 /// <summary>
 ///     Represents a handler of a particular type of message.

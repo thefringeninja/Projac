@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-#if !NETSTANDARD2_0
-using System.Configuration;
+﻿#if !NETSTANDARD2_0
 #endif
 using System.Data;
 using System.Data.Common;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Projac.Sql.Executors;
 

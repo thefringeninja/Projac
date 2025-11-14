@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Projac.Sql.Executors;
+﻿namespace Projac.Sql.Executors;
 
 /// <summary>
 ///     Represents the asynchronous execution of <see cref="SqlNonQueryCommand">commands</see> against a data

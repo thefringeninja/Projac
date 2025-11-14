@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Projac.Sql.Executors;
+﻿namespace Projac.Sql.Executors;
 
 /// <summary>
 ///     Represents the synchronous execution of <see cref="SqlNonQueryCommand">commands</see> against a data

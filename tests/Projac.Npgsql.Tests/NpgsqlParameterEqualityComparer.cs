@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Npgsql;
+﻿using Npgsql;
 
 namespace Projac.Npgsql.Tests;
 

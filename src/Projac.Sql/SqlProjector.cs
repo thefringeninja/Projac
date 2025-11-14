@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Projac.Sql.Executors;
+﻿using Projac.Sql.Executors;
 
 namespace Projac.Sql;
 

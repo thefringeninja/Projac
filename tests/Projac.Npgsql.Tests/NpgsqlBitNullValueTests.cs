@@ -1,5 +1,3 @@
-using System;
-using System.Data;
 using NpgsqlTypes;
 using NUnit.Framework;
 using Projac.Sql;

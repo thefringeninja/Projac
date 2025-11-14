@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Projac;
+﻿namespace Projac;
 
 /// <summary>
 /// Represents the available <see cref="ProjectionHandlerResolver{TConnection}">resolvers</see>.

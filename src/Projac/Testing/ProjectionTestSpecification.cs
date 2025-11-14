@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Projac.Testing;
+﻿namespace Projac.Testing;
 
 /// <summary>
 /// Represent a <see cref="Projection{TConnection}"/> test specification.

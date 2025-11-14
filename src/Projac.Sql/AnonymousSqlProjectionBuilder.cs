@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Projac.Sql;
+﻿namespace Projac.Sql;
 
 /// <summary>
 ///     Represents a fluent syntax to build up an <see cref="AnonymousSqlProjection"/>.

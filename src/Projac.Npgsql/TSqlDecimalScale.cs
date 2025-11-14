@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Projac.Npgsql;
+﻿namespace Projac.Npgsql;
 
 /// <summary>
 ///     Represents the scale of a <see cref="NpgsqlDecimalValue" />. The maximum number of decimal digits that can be stored to the right of the decimal point. Scale must be a value from 0 through the precision of the decimal value. The default scale is 0.

@@ -1,4 +1,3 @@
-using System;
 using Projac.Sql;
 
 namespace Projac.Npgsql;

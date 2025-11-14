@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Projac.Sql;
+﻿namespace Projac.Sql;
 
 /// <summary>
 /// Represents the available <see cref="SqlProjectionHandlerResolver">resolvers</see>.

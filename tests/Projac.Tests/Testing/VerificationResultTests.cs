@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Projac.Testing;
 
 namespace Projac.Tests.Testing;

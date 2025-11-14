@@ -1,5 +1,3 @@
-using System;
-
 namespace Projac.Testing;
 
 /// <summary>
