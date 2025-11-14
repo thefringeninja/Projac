@@ -4,129 +4,128 @@ using NpgsqlTypes;
 using NUnit.Framework;
 using Projac.Sql;
 
-namespace Projac.Npgsql.Tests
+namespace Projac.Npgsql.Tests;
+
+[TestFixture]
+public class NpgsqlNVarCharValueTests
 {
-    [TestFixture]
-    public class NpgsqlNVarCharValueTests
-    {
-        [Test]
-        public void NullIsNotAnAcceptableValue()
-        {
-            Assert.Throws<ArgumentNullException>(() => SutFactory(null, new NpgsqlNVarCharSize(123)));
-        }
+	[Test]
+	public void NullIsNotAnAcceptableValue()
+	{
+		Assert.Throws<ArgumentNullException>(() => SutFactory(null, new NpgsqlNVarCharSize(123)));
+	}
 
-        [Test]
-        public void IsNpgsqlParameterValue()
-        {
-            var sut = SutFactory();
+	[Test]
+	public void IsNpgsqlParameterValue()
+	{
+		var sut = SutFactory();
 
-            Assert.That(sut, Is.InstanceOf<IDbParameterValue>());
-        }
+		Assert.That(sut, Is.InstanceOf<IDbParameterValue>());
+	}
 
-        [Test]
-        public void ToDbParameterReturnsExpectedInstance()
-        {
-            const string parameterName = "name";
-            const string value = "value";
+	[Test]
+	public void ToDbParameterReturnsExpectedInstance()
+	{
+		const string parameterName = "name";
+		const string value = "value";
 
-            var sut = SutFactory(value, new NpgsqlNVarCharSize(123));
+		var sut = SutFactory(value, new NpgsqlNVarCharSize(123));
 
-            var result = sut.ToDbParameter(parameterName);
+		var result = sut.ToDbParameter(parameterName);
 
-            result.ExpectNpgsqlParameter(parameterName, NpgsqlDbType.Varchar, value, false, 123);
-        }
+		result.ExpectNpgsqlParameter(parameterName, NpgsqlDbType.Varchar, value, false, 123);
+	}
 
-        [Test]
-        public void ToSqlParameterReturnsExpectedInstance()
-        {
-            const string parameterName = "name";
-            const string value = "value";
+	[Test]
+	public void ToSqlParameterReturnsExpectedInstance()
+	{
+		const string parameterName = "name";
+		const string value = "value";
 
-            var sut = SutFactory(value, new NpgsqlNVarCharSize(123));
+		var sut = SutFactory(value, new NpgsqlNVarCharSize(123));
 
-            var result = sut.ToSqlParameter(parameterName);
+		var result = sut.ToSqlParameter(parameterName);
 
-            result.ExpectNpgsqlParameter(parameterName, NpgsqlDbType.Varchar, value, false, 123);
-        }
+		result.ExpectNpgsqlParameter(parameterName, NpgsqlDbType.Varchar, value, false, 123);
+	}
 
-        [Test]
-        public void DoesEqualItself()
-        {
-            var sut = SutFactory();
-            var instance = sut;
-            Assert.That(sut.Equals(instance), Is.True);
-        }
+	[Test]
+	public void DoesEqualItself()
+	{
+		var sut = SutFactory();
+		var instance = sut;
+		Assert.That(sut.Equals(instance), Is.True);
+	}
 
-        [Test]
-        public void DoesNotEqualOtherObjectType()
-        {
-            var sut = SutFactory();
-            Assert.That(sut.Equals(new object()), Is.False);
-        }
+	[Test]
+	public void DoesNotEqualOtherObjectType()
+	{
+		var sut = SutFactory();
+		Assert.That(sut.Equals(new object()), Is.False);
+	}
 
-        [Test]
-        public void DoesNotEqualNull()
-        {
-            var sut = SutFactory();
-            Assert.That(sut.Equals(null), Is.False);
-        }
+	[Test]
+	public void DoesNotEqualNull()
+	{
+		var sut = SutFactory();
+		Assert.That(sut.Equals(null), Is.False);
+	}
 
-        [Test]
-        public void TwoInstanceAreEqualIfTheyHaveTheSameValueAndSize()
-        {
-            var sut = SutFactory("value", new NpgsqlNVarCharSize(123));
-            var other = SutFactory("value", new NpgsqlNVarCharSize(123));
-            Assert.That(sut.Equals(other), Is.True);
-        }
+	[Test]
+	public void TwoInstanceAreEqualIfTheyHaveTheSameValueAndSize()
+	{
+		var sut = SutFactory("value", new NpgsqlNVarCharSize(123));
+		var other = SutFactory("value", new NpgsqlNVarCharSize(123));
+		Assert.That(sut.Equals(other), Is.True);
+	}
 
-        [Test]
-        public void TwoInstanceAreNotEqualIfTheirValueDiffers()
-        {
-            var sut = SutFactory("value1", new NpgsqlNVarCharSize(123));
-            var other = SutFactory("value2", new NpgsqlNVarCharSize(123));
-            Assert.That(sut.Equals(other), Is.False);
-        }
+	[Test]
+	public void TwoInstanceAreNotEqualIfTheirValueDiffers()
+	{
+		var sut = SutFactory("value1", new NpgsqlNVarCharSize(123));
+		var other = SutFactory("value2", new NpgsqlNVarCharSize(123));
+		Assert.That(sut.Equals(other), Is.False);
+	}
 
-        [Test]
-        public void TwoInstanceAreNotEqualIfTheirSizeDiffers()
-        {
-            var sut = SutFactory("value", new NpgsqlNVarCharSize(123));
-            var other = SutFactory("value", new NpgsqlNVarCharSize(456));
-            Assert.That(sut.Equals(other), Is.False);
-        }
+	[Test]
+	public void TwoInstanceAreNotEqualIfTheirSizeDiffers()
+	{
+		var sut = SutFactory("value", new NpgsqlNVarCharSize(123));
+		var other = SutFactory("value", new NpgsqlNVarCharSize(456));
+		Assert.That(sut.Equals(other), Is.False);
+	}
 
-        [Test]
-        public void TwoInstanceHaveTheSameHashCodeIfTheyHaveTheSameValueAndSize()
-        {
-            var sut = SutFactory("value", new NpgsqlNVarCharSize(123));
-            var other = SutFactory("value", new NpgsqlNVarCharSize(123));
-            Assert.That(sut.GetHashCode().Equals(other.GetHashCode()), Is.True);
-        }
+	[Test]
+	public void TwoInstanceHaveTheSameHashCodeIfTheyHaveTheSameValueAndSize()
+	{
+		var sut = SutFactory("value", new NpgsqlNVarCharSize(123));
+		var other = SutFactory("value", new NpgsqlNVarCharSize(123));
+		Assert.That(sut.GetHashCode().Equals(other.GetHashCode()), Is.True);
+	}
 
-        [Test]
-        public void TwoInstanceDoNotHaveTheSameHashCodeIfTheirValueDiffers()
-        {
-            var sut = SutFactory("value1", new NpgsqlNVarCharSize(123));
-            var other = SutFactory("value2", new NpgsqlNVarCharSize(123));
-            Assert.That(sut.GetHashCode().Equals(other.GetHashCode()), Is.False);
-        }
+	[Test]
+	public void TwoInstanceDoNotHaveTheSameHashCodeIfTheirValueDiffers()
+	{
+		var sut = SutFactory("value1", new NpgsqlNVarCharSize(123));
+		var other = SutFactory("value2", new NpgsqlNVarCharSize(123));
+		Assert.That(sut.GetHashCode().Equals(other.GetHashCode()), Is.False);
+	}
 
-        [Test]
-        public void TwoInstanceDoNotHaveTheSameHashCodeIfTheirSizeDiffers()
-        {
-            var sut = SutFactory("value", new NpgsqlNVarCharSize(123));
-            var other = SutFactory("value", new NpgsqlNVarCharSize(456));
-            Assert.That(sut.GetHashCode().Equals(other.GetHashCode()), Is.False);
-        }
+	[Test]
+	public void TwoInstanceDoNotHaveTheSameHashCodeIfTheirSizeDiffers()
+	{
+		var sut = SutFactory("value", new NpgsqlNVarCharSize(123));
+		var other = SutFactory("value", new NpgsqlNVarCharSize(456));
+		Assert.That(sut.GetHashCode().Equals(other.GetHashCode()), Is.False);
+	}
 
-        private static NpgsqlNVarCharValue SutFactory()
-        {
-            return SutFactory("value", new NpgsqlNVarCharSize(123));
-        }
+	private static NpgsqlNVarCharValue SutFactory()
+	{
+		return SutFactory("value", new NpgsqlNVarCharSize(123));
+	}
 
-        private static NpgsqlNVarCharValue SutFactory(string value, NpgsqlNVarCharSize size)
-        {
-            return new NpgsqlNVarCharValue(value, size);
-        }
-    }
+	private static NpgsqlNVarCharValue SutFactory(string value, NpgsqlNVarCharSize size)
+	{
+		return new NpgsqlNVarCharValue(value, size);
+	}
 }

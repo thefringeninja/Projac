@@ -1,18 +1,17 @@
 ﻿using NUnit.Framework;
 
-namespace Projac.Npgsql.Tests
+namespace Projac.Npgsql.Tests;
+
+[TestFixture]
+public partial class NpgsqlSyntaxTests
 {
-    [TestFixture]
-    public partial class NpgsqlSyntaxTests
-    {
-        private NpgsqlSyntax _syntax;
+	private NpgsqlSyntax _syntax;
 
-        [SetUp]
-        public void SetUp()
-        {
-            _syntax = new NpgsqlSyntax();
-        }
+	[SetUp]
+	public void SetUp()
+	{
+		_syntax = new NpgsqlSyntax();
+	}
 
-        private NpgsqlSyntax Sql { get { return _syntax; } }
-    }
+	private NpgsqlSyntax Sql { get { return _syntax; } }
 }

@@ -1,19 +1,18 @@
-﻿namespace Projac.Tests
+﻿namespace Projac.Tests;
+
+public class Signal
 {
-    public class Signal
-    {
-        private bool _set;
+	private bool _set;
 
-        public Signal()
-        {
-            _set = false;
-        }
+	public Signal()
+	{
+		_set = false;
+	}
 
-        public void Set()
-        {
-            _set = true;
-        }
+	public void Set()
+	{
+		_set = true;
+	}
 
-        public bool IsSet { get { return _set; } }
-    }
+	public bool IsSet { get { return _set; } }
 }

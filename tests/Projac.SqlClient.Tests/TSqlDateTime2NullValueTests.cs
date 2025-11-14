@@ -3,72 +3,71 @@ using System.Data;
 using NUnit.Framework;
 using Projac.SqlClient;
 
-namespace Projac.Sql.Tests.SqlClient
+namespace Projac.Sql.Tests.SqlClient;
+
+[TestFixture]
+public class TSqlDateTime2NullValueTests
 {
-    [TestFixture]
-    public class TSqlDateTime2NullValueTests
-    {
-        private TSqlDateTime2NullValue _sut;
-        private TSqlDateTime2Precision _precision;
+	private TSqlDateTime2NullValue _sut;
+	private TSqlDateTime2Precision _precision;
 
-        [SetUp]
-        public void SetUp()
-        {
-            _precision = new TSqlDateTime2Precision(4);
-            _sut = new TSqlDateTime2NullValue(_precision);
-        }
+	[SetUp]
+	public void SetUp()
+	{
+		_precision = new TSqlDateTime2Precision(4);
+		_sut = new TSqlDateTime2NullValue(_precision);
+	}
 
-        [Test]
-        public void IsSqlParameterValue()
-        {
-            Assert.That(_sut, Is.InstanceOf<IDbParameterValue>());
-        }
+	[Test]
+	public void IsSqlParameterValue()
+	{
+		Assert.That(_sut, Is.InstanceOf<IDbParameterValue>());
+	}
 
-        [Test]
-        public void ToDbParameterReturnsExpectedInstance()
-        {
-            const string parameterName = "name";
+	[Test]
+	public void ToDbParameterReturnsExpectedInstance()
+	{
+		const string parameterName = "name";
 
-            var result = _sut.ToDbParameter(parameterName);
+		var result = _sut.ToDbParameter(parameterName);
 
-            result.ExpectSqlParameter(parameterName, SqlDbType.DateTime2, DBNull.Value, true, 8, 4);
-        }
+		result.ExpectSqlParameter(parameterName, SqlDbType.DateTime2, DBNull.Value, true, 8, 4);
+	}
 
-        [Test]
-        public void ToSqlParameterReturnsExpectedInstance()
-        {
-            const string parameterName = "name";
+	[Test]
+	public void ToSqlParameterReturnsExpectedInstance()
+	{
+		const string parameterName = "name";
 
-            var result = _sut.ToSqlParameter(parameterName);
+		var result = _sut.ToSqlParameter(parameterName);
 
-            result.ExpectSqlParameter(parameterName, SqlDbType.DateTime2, DBNull.Value, true, 8, 4);
-        }
+		result.ExpectSqlParameter(parameterName, SqlDbType.DateTime2, DBNull.Value, true, 8, 4);
+	}
 
-        [Test]
-        public void DoesEqualItself()
-        {
-            var self = _sut;
-            Assert.That(_sut.Equals(self), Is.True);
-        }
+	[Test]
+	public void DoesEqualItself()
+	{
+		var self = _sut;
+		Assert.That(_sut.Equals(self), Is.True);
+	}
 
-        [Test]
-        public void DoesNotEqualOtherObjectType()
-        {
-            Assert.That(_sut.Equals(new object()), Is.False);
-        }
+	[Test]
+	public void DoesNotEqualOtherObjectType()
+	{
+		Assert.That(_sut.Equals(new object()), Is.False);
+	}
 
-        [Test]
-        public void DoesNotEqualNull()
-        {
-            Assert.That(_sut.Equals(null), Is.False);
-        }
+	[Test]
+	public void DoesNotEqualNull()
+	{
+		Assert.That(_sut.Equals(null), Is.False);
+	}
 
-        [Test]
-        public void HasExpectedHashCode()
-        {
-            var result = _sut.GetHashCode();
+	[Test]
+	public void HasExpectedHashCode()
+	{
+		var result = _sut.GetHashCode();
 
-            Assert.That(result, Is.EqualTo(4));
-        }
-    }
+		Assert.That(result, Is.EqualTo(4));
+	}
 }

@@ -2,13 +2,12 @@
 using System.Data.Common;
 using Microsoft.Data.SqlClient;
 
-namespace Projac.Sql.Tests.SqlClient
+namespace Projac.Sql.Tests.SqlClient;
+
+internal class SqlParameterValueStub : IDbParameterValue
 {
-    internal class SqlParameterValueStub : IDbParameterValue
-    {
-        public DbParameter ToDbParameter(string parameterName)
-        {
-            return new SqlParameter { ParameterName = parameterName, Value = DBNull.Value };
-        }
-    }
+	public DbParameter ToDbParameter(string parameterName)
+	{
+		return new SqlParameter { ParameterName = parameterName, Value = DBNull.Value };
+	}
 }

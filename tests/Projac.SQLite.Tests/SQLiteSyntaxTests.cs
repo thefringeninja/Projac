@@ -1,19 +1,18 @@
 ﻿using NUnit.Framework;
 using Projac.SQLite;
 
-namespace Projac.SQLite.Tests
+namespace Projac.SQLite.Tests;
+
+[TestFixture]
+public partial class SQLiteSyntaxTests
 {
-    [TestFixture]
-    public partial class SQLiteSyntaxTests
-    {
-        private SQLiteSyntax _syntax;
+	private SQLiteSyntax _syntax;
 
-        [SetUp]
-        public void SetUp()
-        {
-            _syntax = new SQLiteSyntax();
-        }
+	[SetUp]
+	public void SetUp()
+	{
+		_syntax = new SQLiteSyntax();
+	}
 
-        private SQLiteSyntax Sql { get { return _syntax; } }
-    }
+	private SQLiteSyntax Sql { get { return _syntax; } }
 }

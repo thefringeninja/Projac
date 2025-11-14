@@ -2,28 +2,27 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Projac.Tests
+namespace Projac.Tests;
+
+public class CallRecordingConnection
 {
-    public class CallRecordingConnection
-    {
-        private readonly List<Tuple<int, object, CancellationToken>> _calls;
+	private readonly List<Tuple<int, object, CancellationToken>> _calls;
 
-        public CallRecordingConnection()
-        {
-            _calls = new List<Tuple<int, object, CancellationToken>>();
-        }
+	public CallRecordingConnection()
+	{
+		_calls = new List<Tuple<int, object, CancellationToken>>();
+	}
 
-        public void RecordCall(int handler, object message, CancellationToken token)
-        {
-            _calls.Add(new Tuple<int, object, CancellationToken>(handler, message, CancellationToken.None));
-        }
+	public void RecordCall(int handler, object message, CancellationToken token)
+	{
+		_calls.Add(new Tuple<int, object, CancellationToken>(handler, message, CancellationToken.None));
+	}
 
-        public Tuple<int, object, CancellationToken>[] RecordedCalls
-        {
-            get
-            {
-                return _calls.ToArray(); 
-            }
-        }
-    }
+	public Tuple<int, object, CancellationToken>[] RecordedCalls
+	{
+		get
+		{
+			return _calls.ToArray(); 
+		}
+	}
 }
