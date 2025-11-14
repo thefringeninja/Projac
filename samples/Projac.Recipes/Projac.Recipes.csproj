@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Projac\Projac.csproj" />
+    <ProjectReference Include="..\..\src\Projac.Sql\Projac.Sql.csproj" />
+    <ProjectReference Include="..\..\src\Projac.SqlClient\Projac.SqlClient.csproj" />
+    <ProjectReference Include="..\..\src\Projac.SQLite\Projac.SQLite.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CompareNETObjects" Version="4.84.0" />
+    <PackageReference Include="ElasticSearch.Net" Version="7.17.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="RavenDB.Embedded" Version="7.1.4" />
+    <PackageReference Include="StackExchange.Redis" Version="2.9.32" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+  </ItemGroup>
+</Project>

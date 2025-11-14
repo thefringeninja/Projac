@@ -1,0 +1,17 @@
+<Solution>
+	<Folder Name="/src/">
+		<Project Path="src/Projac/Projac.csproj" />
+		<Project Path="src/Projac.Npgsql/Projac.Npgsql.csproj" />
+		<Project Path="src/Projac.Sql/Projac.Sql.csproj" />
+		<Project Path="src/Projac.SqlClient/Projac.SqlClient.csproj" />
+		<Project Path="src/Projac.SQLite/Projac.SQLite.csproj" />
+	</Folder>
+	<Folder Name="/tests/">
+		<Project Path="tests/Projac.Npgsql.Tests/Projac.Npgsql.Tests.csproj" />
+		<Project Path="tests/Projac.Sql.Tests/Projac.Sql.Tests.csproj" />
+		<Project Path="tests/Projac.SqlClient.Tests/Projac.SqlClient.Tests.csproj" />
+		<Project Path="tests/Projac.SQLite.Tests/Projac.SQLite.Tests.csproj" />
+		<Project Path="tests/Projac.Tests/Projac.Tests.csproj" />
+	</Folder>
+
+</Solution>

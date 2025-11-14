@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.Common;
 using Npgsql;
+using NpgsqlTypes;
 using Projac.Sql;
 
 namespace Projac.Npgsql
@@ -78,7 +79,8 @@ namespace Projac.Npgsql
                     IsNullable = false,
                     Precision = _precision,
                     Scale = _scale,
-                    SourceVersion = DataRowVersion.Default
+                    SourceVersion = DataRowVersion.Default,
+                    NpgsqlDbType = NpgsqlDbType.Money
                 };
 #endif
         }

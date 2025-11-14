@@ -1,0 +1,36 @@
+<Project>
+	<PropertyGroup>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<Nullable>disable</Nullable>
+		<NullableContextOptions>enable</NullableContextOptions>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<PreserveCompilationContext>true</PreserveCompilationContext>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<LangVersion>latest</LangVersion>
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>portable</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<IsPackable>true</IsPackable>
+		<Product>Projac</Product>
+		<PackageOwners>Yves Reynhout</PackageOwners>
+		<Authors>Yves Reynhout</Authors>
+		<Copyright>Copyright © BitTacklr 2017. All rights reserved.</Copyright>
+		<NeutralLanguage>en</NeutralLanguage>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageLicenseUrl>https://github.com/yreynhout/Projac/blob/master/LICENSE</PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/yreynhout/Projac</PackageProjectUrl>
+		<PackageReleaseNotes>Please visit https://github.com/BitTacklr/Projac/wiki/Changes$(PackageVersion) .</PackageReleaseNotes>
+		<PackageTags>command and query responsibility segregation;cqrs;event sourcing;es;domain driven design;ddd</PackageTags>
+		<IncludeSymbols>true</IncludeSymbols>
+		<IncludeSource>true</IncludeSource>
+		<IsTool>false</IsTool>
+		<RepositoryUrl>https://github.com/yreynhout/Projac</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<IncludeBuildOutput>true</IncludeBuildOutput>
+		<IncludeContentInPack>false</IncludeContentInPack>
+	</PropertyGroup>
+
+</Project>

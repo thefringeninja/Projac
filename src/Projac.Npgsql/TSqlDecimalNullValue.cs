@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.Common;
 using Npgsql;
+using NpgsqlTypes;
 using Projac.Sql;
 
 namespace Projac.Npgsql
@@ -65,7 +66,7 @@ namespace Projac.Npgsql
                 DataRowVersion.Default,
                 DBNull.Value);
 #else
-            return new NpgsqlParameter<decimal>
+            return new NpgsqlParameter
                 {
                     ParameterName = parameterName,
                     Direction = ParameterDirection.Input,
@@ -75,7 +76,8 @@ namespace Projac.Npgsql
                     IsNullable = true,
                     Precision = _precision,
                     Scale = _scale,
-                    SourceVersion = DataRowVersion.Default
+                    SourceVersion = DataRowVersion.Default,
+                    NpgsqlDbType = NpgsqlDbType.Money
                 };
 #endif
         }

@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Data.Common;
 using Npgsql;
+using NpgsqlTypes;
 using Projac.Sql;
 
 namespace Projac.Npgsql
@@ -41,7 +42,7 @@ namespace Projac.Npgsql
         /// </returns>
         public NpgsqlParameter ToSqlParameter(string parameterName)
         {
-            return new NpgsqlParameter<DateTime>
+            return new NpgsqlParameter
                 {
                     ParameterName = parameterName,
                     Direction = ParameterDirection.Input,
@@ -51,7 +52,8 @@ namespace Projac.Npgsql
                     IsNullable = true,
                     Precision = 0,
                     Scale = 0,
-                    SourceVersion = DataRowVersion.Default
+                    SourceVersion = DataRowVersion.Default,
+                    NpgsqlDbType = NpgsqlDbType.Date
                 };
         }
 

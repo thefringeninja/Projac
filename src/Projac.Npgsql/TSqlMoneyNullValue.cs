@@ -55,7 +55,7 @@ namespace Projac.Npgsql
                 DataRowVersion.Default,
                 DBNull.Value);
 #else
-            return new NpgsqlParameter<decimal>
+            return new NpgsqlParameter
                 {
                     ParameterName = parameterName,
                     Direction = ParameterDirection.Input,
@@ -66,7 +66,7 @@ namespace Projac.Npgsql
                     IsNullable = true,
                     Precision = 0,
                     Scale = 4,
-                    SourceVersion = DataRowVersion.Default
+                    SourceVersion = DataRowVersion.Default,
                 };
 #endif
         }

@@ -1,6 +1,6 @@
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using Projac.Sql;
 
 namespace Projac.SqlClient
@@ -42,19 +42,6 @@ namespace Projac.SqlClient
         /// </returns>
         public SqlParameter ToSqlParameter(string parameterName)
         {
-#if NET46 || NET452
-            return new SqlParameter(
-                parameterName,
-                SqlDbType.Money,
-                8,
-                ParameterDirection.Input,
-                false,
-                0,
-                4,
-                "",
-                DataRowVersion.Default,
-                _value);
-#elif NETSTANDARD2_0
             return new SqlParameter 
                 {
                     ParameterName = parameterName,
@@ -68,7 +55,6 @@ namespace Projac.SqlClient
                     Scale = 4,
                     SourceVersion = DataRowVersion.Default
                 };
-#endif
         }
 
         private bool Equals(TSqlMoneyValue other)

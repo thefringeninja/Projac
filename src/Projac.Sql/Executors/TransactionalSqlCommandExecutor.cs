@@ -22,26 +22,6 @@ namespace Projac.Sql.Executors
         private readonly int _commandTimeout;
         private readonly string _connectionString;
 
-#if !NETSTANDARD2_0
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="TransactionalSqlCommandExecutor" /> class.
-        /// </summary>
-        /// <param name="settings">The connection string settings.</param>
-        /// <param name="isolationLevel">The transaction isolation level.</param>
-        /// <param name="commandTimeout">The command timeout.</param>
-        /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="settings" /> is <c>null</c>.</exception>
-        public TransactionalSqlCommandExecutor(ConnectionStringSettings settings,
-            IsolationLevel isolationLevel,
-            int commandTimeout = 30)
-        {
-            if (settings == null) throw new ArgumentNullException("settings");
-            _dbProviderFactory = DbProviderFactories.GetFactory(settings.ProviderName);
-            _connectionString = settings.ConnectionString;
-            _isolationLevel = isolationLevel;
-            _commandTimeout = commandTimeout;
-        }
-#endif
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="TransactionalSqlCommandExecutor" /> class.
         /// </summary>

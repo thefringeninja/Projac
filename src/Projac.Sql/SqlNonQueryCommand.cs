@@ -27,12 +27,10 @@ namespace Projac.Sql
         {
             if (text == null)
                 throw new ArgumentNullException("text");
-            if (parameters == null)
-                throw new ArgumentNullException("parameters");
             if (!Enum.IsDefined(typeof (CommandType), type))
                 throw new ArgumentException(string.Format("The command type value {0} is not supported.", type), "type");
             _text = text;
-            _parameters = parameters;
+            _parameters = parameters ?? [];
             _type = type;
         }
 
