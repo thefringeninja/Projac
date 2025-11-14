@@ -206,7 +206,7 @@ public class HandlerResolutionCases
 
 	private static SqlProjectionHandler HandlerFor<TMessage>()
 	{
-		return new SqlProjectionHandler(typeof(TMessage), _ => Array.Empty<SqlNonQueryCommand>());
+		return new SqlProjectionHandler(typeof(TMessage), _ => []);
 	}
 
 	private interface IMessage { }

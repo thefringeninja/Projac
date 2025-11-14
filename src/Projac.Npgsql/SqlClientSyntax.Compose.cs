@@ -26,7 +26,7 @@ public partial class NpgsqlSyntax
 	public SqlNonQueryCommandComposer ComposeIf(bool condition,
 		IEnumerable<SqlNonQueryCommand> commands)
 	{
-		return Compose(condition ? commands : Array.Empty<SqlNonQueryCommand>());
+		return Compose(condition ? commands : []);
 	}
 
 	/// <summary>
@@ -40,7 +40,7 @@ public partial class NpgsqlSyntax
 	public SqlNonQueryCommandComposer ComposeUnless(bool condition,
 		IEnumerable<SqlNonQueryCommand> commands)
 	{
-		return Compose(!condition ? commands : Array.Empty<SqlNonQueryCommand>());
+		return Compose(!condition ? commands : []);
 	}
 
 	/// <summary>

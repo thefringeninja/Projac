@@ -44,7 +44,7 @@ public class ProjectorTests
 	public void ProjectAsyncMany_ConnectionCanBeNull()
 	{
 		var sut = SutFactory();
-		Assert.DoesNotThrow(() => sut.ProjectAsync((object)null, Array.Empty<object>()));
+		Assert.DoesNotThrow(() => sut.ProjectAsync((object)null, []));
 	}
 
 	[Test]
@@ -58,7 +58,7 @@ public class ProjectorTests
 	public void ProjectAsyncManyToken_ConnectionCanBeNull()
 	{
 		var sut = SutFactory();
-		Assert.DoesNotThrow(() => sut.ProjectAsync((object)null, Array.Empty<object>(), CancellationToken.None));
+		Assert.DoesNotThrow(() => sut.ProjectAsync((object)null, [], CancellationToken.None));
 	}
 
 	[Test]

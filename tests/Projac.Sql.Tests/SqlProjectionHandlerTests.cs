@@ -9,7 +9,7 @@ public class SqlProjectionHandlerTests
 	public void MessageCanNotBeNull()
 	{
 		Assert.Throws<ArgumentNullException>(
-			() => new SqlProjectionHandler(null, _ => Array.Empty<SqlNonQueryCommand>())
+			() => new SqlProjectionHandler(null, _ => [])
 		);
 	}
 
@@ -25,7 +25,7 @@ public class SqlProjectionHandlerTests
 	public void ParametersArePreservedAsProperties()
 	{
 		var message = typeof(object);
-		Func<object, IEnumerable<SqlNonQueryCommand>> handler = _ => Array.Empty<SqlNonQueryCommand>();
+		Func<object, IEnumerable<SqlNonQueryCommand>> handler = _ => [];
 
 		var sut = new SqlProjectionHandler(message, handler);
 

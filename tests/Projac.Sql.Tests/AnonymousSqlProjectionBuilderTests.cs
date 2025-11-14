@@ -25,8 +25,8 @@ public class AnonymousSqlProjectionBuilderTests
 	[Test]
 	public void HandlersAreCopiedOnConstruction()
 	{
-		var handler1 = new SqlProjectionHandler(typeof(object), o => Array.Empty<SqlNonQueryCommand>());
-		var handler2 = new SqlProjectionHandler(typeof(object), o => Array.Empty<SqlNonQueryCommand>());
+		var handler1 = new SqlProjectionHandler(typeof(object), o => []);
+		var handler2 = new SqlProjectionHandler(typeof(object), o => []);
 		var sut = new AnonymousSqlProjectionBuilder([
 			handler1, 
 			handler2
