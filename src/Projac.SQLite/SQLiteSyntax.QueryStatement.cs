@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.Data.Common;
 using Projac.Sql;
 
 namespace Projac.SQLite;

@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.Data.Common;
 using NUnit.Framework;
 
 namespace Projac.Sql.Tests.SqlClient;
