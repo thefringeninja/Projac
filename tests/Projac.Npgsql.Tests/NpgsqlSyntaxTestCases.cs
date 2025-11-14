@@ -7,7 +7,7 @@ namespace Projac.Npgsql.Tests;
 
 public class NpgsqlSyntaxTestCases
 {
-	private static readonly NpgsqlSyntax Sql = new NpgsqlSyntax();
+	private static readonly NpgsqlSyntax Sql = new();
 
 	public static IEnumerable<TestCaseData> QueryProcedureCases()
 	{

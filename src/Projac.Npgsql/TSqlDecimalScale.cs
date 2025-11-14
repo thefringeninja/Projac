@@ -3,22 +3,22 @@
 /// <summary>
 ///     Represents the scale of a <see cref="NpgsqlDecimalValue" />. The maximum number of decimal digits that can be stored to the right of the decimal point. Scale must be a value from 0 through the precision of the decimal value. The default scale is 0.
 /// </summary>
-public struct NpgsqlDecimalScale : IEquatable<NpgsqlDecimalScale>, IComparable<NpgsqlDecimalScale>, IComparable<NpgsqlDecimalPrecision>
+public readonly struct NpgsqlDecimalScale : IEquatable<NpgsqlDecimalScale>, IComparable<NpgsqlDecimalScale>, IComparable<NpgsqlDecimalPrecision>
 {
 	/// <summary>
 	///     Represents the maximum precision value.
 	/// </summary>
-	public static readonly NpgsqlDecimalScale Max = new NpgsqlDecimalScale(38);
+	public static readonly NpgsqlDecimalScale Max = new(38);
 
 	/// <summary>
 	///     Represents the minimum precision value.
 	/// </summary>
-	public static readonly NpgsqlDecimalScale Min = new NpgsqlDecimalScale(0);
+	public static readonly NpgsqlDecimalScale Min = new(0);
 
 	/// <summary>
 	///     Represents the default value.
 	/// </summary>
-	public static readonly NpgsqlDecimalScale Default = new NpgsqlDecimalScale(0);
+	public static readonly NpgsqlDecimalScale Default = new(0);
 
 	private readonly byte _value;
 

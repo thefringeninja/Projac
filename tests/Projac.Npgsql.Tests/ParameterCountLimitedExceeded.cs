@@ -4,7 +4,7 @@ namespace Projac.Npgsql.Tests;
 
 public class ParameterCountLimitedExceeded
 {
-	public static readonly ParameterCountLimitedExceeded Instance = new ParameterCountLimitedExceeded();
+	public static readonly ParameterCountLimitedExceeded Instance = new();
 
 	private readonly NpgsqlSyntax _syntax;
 

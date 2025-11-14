@@ -14,7 +14,7 @@ public class NpgsqlMoneyNullValue : IDbParameterValue
 	/// <summary>
 	///     The single instance of this value.
 	/// </summary>
-	public static readonly NpgsqlMoneyNullValue Instance = new NpgsqlMoneyNullValue();
+	public static readonly NpgsqlMoneyNullValue Instance = new();
 
 	private NpgsqlMoneyNullValue()
 	{

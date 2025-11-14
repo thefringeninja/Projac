@@ -3,12 +3,12 @@ namespace Projac.SqlClient;
 /// <summary>
 ///     Represents the size of a <see cref="TSqlVarBinaryValue" />.
 /// </summary>
-public struct TSqlVarBinarySize : IEquatable<TSqlVarBinarySize>
+public readonly struct TSqlVarBinarySize : IEquatable<TSqlVarBinarySize>
 {
 	/// <summary>
 	///     Represents the maximum size value.
 	/// </summary>
-	public static readonly TSqlVarBinarySize Max = new TSqlVarBinarySize(-1);
+	public static readonly TSqlVarBinarySize Max = new(-1);
 
 	private readonly int _value;
 

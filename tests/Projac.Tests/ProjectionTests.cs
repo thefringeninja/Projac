@@ -222,7 +222,7 @@ namespace Projac.Tests
                     Is.EquivalentTo(tasks));
             }
 
-            private static readonly Random Random = new Random();
+            private static readonly Random Random = new();
 
             private static Func<object, object, CancellationToken, Task> HandlerFactory(Task task)
             {
@@ -313,7 +313,7 @@ namespace Projac.Tests
                     Is.EquivalentTo(tasks));
             }
 
-            private static readonly Random Random = new Random();
+            private static readonly Random Random = new();
 
             private static Func<object, object, Task> HandlerFactory(Task task)
             {
@@ -411,7 +411,7 @@ namespace Projac.Tests
                 Assert.That(signals, Is.All.Matches<Signal>(signal => signal.IsSet));
             }
 
-            private static readonly Random Random = new Random();
+            private static readonly Random Random = new();
 
             private static Action<object, object> HandlerFactory(Signal signal)
             {

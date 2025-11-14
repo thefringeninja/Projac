@@ -13,7 +13,7 @@ public class TSqlDateTimeOffsetNullValue : IDbParameterValue
 	/// <summary>
 	///     The single instance of this value.
 	/// </summary>
-	public static readonly TSqlDateTimeOffsetNullValue Instance = new TSqlDateTimeOffsetNullValue();
+	public static readonly TSqlDateTimeOffsetNullValue Instance = new();
 
 	private TSqlDateTimeOffsetNullValue()
 	{

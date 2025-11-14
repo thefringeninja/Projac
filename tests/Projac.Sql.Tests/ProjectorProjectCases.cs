@@ -48,7 +48,7 @@ public class ProjectorProjectCases
 		var resolver2 = Resolve.WhenEqualToHandlerMessageType([]);
 		yield return new TestCaseData(
 			resolver2,
-			new object[] { new object(), 123 }, Array.Empty<SqlNonQueryCommand>());
+			new object[] { new(), 123 }, Array.Empty<SqlNonQueryCommand>());
 		//Multimatch
 		var commands3 = new[] { CommandFactory(), CommandFactory() };
 		var commands4 = new[] { CommandFactory(), CommandFactory() };
@@ -57,7 +57,7 @@ public class ProjectorProjectCases
 		var resolver3 = Resolve.WhenEqualToHandlerMessageType([handler3, handler4]);
 		yield return new TestCaseData(
 			resolver3,
-			new object[] { new object(), new object() },
+			new object[] { new(), new() },
 			commands3.Concat(commands4).Concat(commands3).Concat(commands4).ToArray());
 		//Multitype Match
 		var commands5 = new[] { CommandFactory(), CommandFactory() };
@@ -77,7 +77,7 @@ public class ProjectorProjectCases
 		var resolver5 = Resolve.WhenEqualToHandlerMessageType([handler7, handler8]);
 		yield return new TestCaseData(
 			resolver5,
-			new object[] { new object() },
+			new object[] { new() },
 			commands7.Concat(commands8).ToArray());
 	}
 

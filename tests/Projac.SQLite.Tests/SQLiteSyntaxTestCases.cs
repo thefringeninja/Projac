@@ -7,7 +7,7 @@ namespace Projac.SQLite.Tests;
 
 public class SQLiteSyntaxTestCases
 {
-	private static readonly SQLiteSyntax Sql = new SQLiteSyntax();
+	private static readonly SQLiteSyntax Sql = new();
 
 	public static IEnumerable<TestCaseData> NonQueryStatementCases()
 	{

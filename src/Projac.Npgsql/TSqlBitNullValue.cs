@@ -14,7 +14,7 @@ public class NpgsqlBitNullValue : IDbParameterValue
 	/// <summary>
 	///     The single instance of this value.
 	/// </summary>
-	public static readonly NpgsqlBitNullValue Instance = new NpgsqlBitNullValue();
+	public static readonly NpgsqlBitNullValue Instance = new();
 
 	private NpgsqlBitNullValue()
 	{

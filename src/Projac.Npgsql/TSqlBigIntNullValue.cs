@@ -13,7 +13,7 @@ public class NpgsqlBigIntNullValue : IDbParameterValue
 	/// <summary>
 	///     The single instance of this value.
 	/// </summary>
-	public static readonly NpgsqlBigIntNullValue Instance = new NpgsqlBigIntNullValue();
+	public static readonly NpgsqlBigIntNullValue Instance = new();
 
 	private NpgsqlBigIntNullValue()
 	{

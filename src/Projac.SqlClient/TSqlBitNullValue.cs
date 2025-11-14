@@ -13,7 +13,7 @@ public class TSqlBitNullValue : IDbParameterValue
 	/// <summary>
 	///     The single instance of this value.
 	/// </summary>
-	public static readonly TSqlBitNullValue Instance = new TSqlBitNullValue();
+	public static readonly TSqlBitNullValue Instance = new();
 
 	private TSqlBitNullValue()
 	{

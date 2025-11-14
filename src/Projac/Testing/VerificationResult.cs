@@ -3,7 +3,7 @@ namespace Projac.Testing;
 /// <summary>
 /// The result of a test specification verification.
 /// </summary>
-public struct VerificationResult : IEquatable<VerificationResult>
+public readonly struct VerificationResult : IEquatable<VerificationResult>
 {
 	private readonly VerificationResultState _state;
 	private readonly string _message;

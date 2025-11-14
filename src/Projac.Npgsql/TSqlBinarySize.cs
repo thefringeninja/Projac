@@ -3,7 +3,7 @@ namespace Projac.Npgsql;
 /// <summary>
 ///     Represents the size of a <see cref="NpgsqlBinaryValue" />.
 /// </summary>
-public struct NpgsqlBinarySize : IEquatable<NpgsqlBinarySize>
+public readonly struct NpgsqlBinarySize : IEquatable<NpgsqlBinarySize>
 {
 	private readonly int _value;
 

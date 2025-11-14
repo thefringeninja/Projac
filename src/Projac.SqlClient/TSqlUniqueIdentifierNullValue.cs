@@ -13,7 +13,7 @@ public class TSqlUniqueIdentifierNullValue : IDbParameterValue
 	/// <summary>
 	///     The single instance of this value.
 	/// </summary>
-	public static readonly TSqlUniqueIdentifierNullValue Instance = new TSqlUniqueIdentifierNullValue();
+	public static readonly TSqlUniqueIdentifierNullValue Instance = new();
 
 	private TSqlUniqueIdentifierNullValue()
 	{

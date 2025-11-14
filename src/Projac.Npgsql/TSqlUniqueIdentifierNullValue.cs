@@ -14,7 +14,7 @@ public class NpgsqlUniqueIdentifierNullValue : IDbParameterValue
 	/// <summary>
 	///     The single instance of this value.
 	/// </summary>
-	public static readonly NpgsqlUniqueIdentifierNullValue Instance = new NpgsqlUniqueIdentifierNullValue();
+	public static readonly NpgsqlUniqueIdentifierNullValue Instance = new();
 
 	private NpgsqlUniqueIdentifierNullValue()
 	{

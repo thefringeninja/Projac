@@ -142,7 +142,7 @@ public class ProjectorProjectCases
 		var resolver2 = Resolve.WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<CallRecordingConnection>>());
 		yield return new TestCaseData(
 			resolver2,
-			new object[] { new object(), 123 },
+			new object[] { new(), 123 },
 			token2, Array.Empty<Tuple<int, object, CancellationToken>>());
 		//Multimatch
 		var token3 = new CancellationToken();
@@ -253,7 +253,7 @@ public class ProjectorProjectCases
 		var resolver2 = Resolve.WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<CallRecordingConnection>>());
 		yield return new TestCaseData(
 			resolver2,
-			new object[] { new object(), 123 }, Array.Empty<Tuple<int, object, CancellationToken>>());
+			new object[] { new(), 123 }, Array.Empty<Tuple<int, object, CancellationToken>>());
 		//Multimatch
 		var message3 = new object();
 		var message4 = new object();

@@ -7,7 +7,7 @@ namespace Projac.Sql.Tests.SqlClient;
 
 public class SqlClientSyntaxTestCases
 {
-	private static readonly SqlClientSyntax Sql = new SqlClientSyntax();
+	private static readonly SqlClientSyntax Sql = new();
 
 	public static IEnumerable<TestCaseData> QueryProcedureCases()
 	{

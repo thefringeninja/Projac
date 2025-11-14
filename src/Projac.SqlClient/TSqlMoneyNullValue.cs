@@ -13,7 +13,7 @@ public class TSqlMoneyNullValue : IDbParameterValue
 	/// <summary>
 	///     The single instance of this value.
 	/// </summary>
-	public static readonly TSqlMoneyNullValue Instance = new TSqlMoneyNullValue();
+	public static readonly TSqlMoneyNullValue Instance = new();
 
 	private TSqlMoneyNullValue()
 	{

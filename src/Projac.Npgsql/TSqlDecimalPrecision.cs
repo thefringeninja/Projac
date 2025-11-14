@@ -3,22 +3,22 @@
 /// <summary>
 ///     Represents the precision of a <see cref="NpgsqlDecimalValue" />. The maximum total number of decimal digits that will be stored, both to the left and to the right of the decimal point. The precision must be a value from 1 through the maximum precision of 38. The default precision is 18.
 /// </summary>
-public struct NpgsqlDecimalPrecision : IEquatable<NpgsqlDecimalPrecision>
+public readonly struct NpgsqlDecimalPrecision : IEquatable<NpgsqlDecimalPrecision>
 {
 	/// <summary>
 	///     Represents the maximum precision value.
 	/// </summary>
-	public static readonly NpgsqlDecimalPrecision Max = new NpgsqlDecimalPrecision(38);
+	public static readonly NpgsqlDecimalPrecision Max = new(38);
 
 	/// <summary>
 	///     Represents the minimum precision value.
 	/// </summary>
-	public static readonly NpgsqlDecimalPrecision Min = new NpgsqlDecimalPrecision(1);
+	public static readonly NpgsqlDecimalPrecision Min = new(1);
 
 	/// <summary>
 	///     Represents the default precision value.
 	/// </summary>
-	public static readonly NpgsqlDecimalPrecision Default = new NpgsqlDecimalPrecision(18);
+	public static readonly NpgsqlDecimalPrecision Default = new(18);
 
 	private readonly byte _value;
 

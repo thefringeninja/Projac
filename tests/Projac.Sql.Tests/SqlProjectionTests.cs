@@ -219,7 +219,7 @@ namespace Projac.Sql.Tests
                     Is.EquivalentTo(commands));
             }
 
-            private static readonly Random Random = new Random();
+            private static readonly Random Random = new();
 
             private static Func<object, SqlNonQueryCommand> HandlerFactory(SqlNonQueryCommand command)
             {
@@ -311,7 +311,7 @@ namespace Projac.Sql.Tests
                     Is.EqualTo(commands));
             }
 
-            private static readonly Random Random = new Random();
+            private static readonly Random Random = new();
 
             private static List<SqlNonQueryCommand> RandomCommandSet()
             {
@@ -413,7 +413,7 @@ namespace Projac.Sql.Tests
                     Is.EqualTo(commands));
             }
 
-            private static readonly Random Random = new Random();
+            private static readonly Random Random = new();
 
             private static List<SqlNonQueryCommand> RandomCommandSet()
             {

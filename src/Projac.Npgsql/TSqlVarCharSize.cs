@@ -3,12 +3,12 @@ namespace Projac.Npgsql;
 /// <summary>
 ///     Represents the size of a <see cref="NpgsqlVarCharValue" />.
 /// </summary>
-public struct NpgsqlVarCharSize : IEquatable<NpgsqlVarCharSize>
+public readonly struct NpgsqlVarCharSize : IEquatable<NpgsqlVarCharSize>
 {
 	/// <summary>
 	///     Represents the maximum size value.
 	/// </summary>
-	public static readonly NpgsqlVarCharSize Max = new NpgsqlVarCharSize(-1);
+	public static readonly NpgsqlVarCharSize Max = new(-1);
 
 	private readonly int _value;
 

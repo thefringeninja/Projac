@@ -14,7 +14,7 @@ public class NpgsqlDateTimeOffsetNullValue : IDbParameterValue
 	/// <summary>
 	///     The single instance of this value.
 	/// </summary>
-	public static readonly NpgsqlDateTimeOffsetNullValue Instance = new NpgsqlDateTimeOffsetNullValue();
+	public static readonly NpgsqlDateTimeOffsetNullValue Instance = new();
 
 	private NpgsqlDateTimeOffsetNullValue()
 	{

@@ -3,7 +3,7 @@ namespace Projac.SqlClient;
 /// <summary>
 ///     Represents the size of a <see cref="TSqlBinaryValue" />.
 /// </summary>
-public struct TSqlBinarySize : IEquatable<TSqlBinarySize>
+public readonly struct TSqlBinarySize : IEquatable<TSqlBinarySize>
 {
 	private readonly int _value;
 

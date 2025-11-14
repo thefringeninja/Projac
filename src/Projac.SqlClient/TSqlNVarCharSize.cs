@@ -3,12 +3,12 @@ namespace Projac.SqlClient;
 /// <summary>
 ///     Represents the size of a <see cref="TSqlNVarCharValue" />.
 /// </summary>
-public struct TSqlNVarCharSize : IEquatable<TSqlNVarCharSize>
+public readonly struct TSqlNVarCharSize : IEquatable<TSqlNVarCharSize>
 {
 	/// <summary>
 	///     Represents the maximum size value.
 	/// </summary>
-	public static readonly TSqlNVarCharSize Max = new TSqlNVarCharSize(-1);
+	public static readonly TSqlNVarCharSize Max = new(-1);
 
 	private readonly int _value;
 

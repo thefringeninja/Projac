@@ -3,22 +3,22 @@
 /// <summary>
 ///     Represents the precision of a <see cref="TSqlDateTime2Value" />.
 /// </summary>
-public struct TSqlDateTime2Precision : IEquatable<TSqlDateTime2Precision>
+public readonly struct TSqlDateTime2Precision : IEquatable<TSqlDateTime2Precision>
 {
 	/// <summary>
 	///     Represents the maximum precision value.
 	/// </summary>
-	public static readonly TSqlDateTime2Precision Max = new TSqlDateTime2Precision(7);
+	public static readonly TSqlDateTime2Precision Max = new(7);
 
 	/// <summary>
 	///     Represents the minimum precision value.
 	/// </summary>
-	public static readonly TSqlDateTime2Precision Min = new TSqlDateTime2Precision(0);
+	public static readonly TSqlDateTime2Precision Min = new(0);
 
 	/// <summary>
 	///     Represents the default precision value.
 	/// </summary>
-	public static readonly TSqlDateTime2Precision Default = new TSqlDateTime2Precision(7);
+	public static readonly TSqlDateTime2Precision Default = new(7);
 
 	private readonly byte _value;
 

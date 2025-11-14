@@ -4,7 +4,7 @@ namespace Projac.Sql.Tests.SqlClient;
 
 public class ParameterCountLimitedExceeded
 {
-	public static readonly ParameterCountLimitedExceeded Instance = new ParameterCountLimitedExceeded();
+	public static readonly ParameterCountLimitedExceeded Instance = new();
 
 	private readonly SqlClientSyntax _syntax;
 

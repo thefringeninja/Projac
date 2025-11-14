@@ -113,8 +113,8 @@ namespace Projac.Tests.Testing
             public void GivenArrayReturnsExpectedResultAfterVerifyWithToken()
             {
                 object[] messages = [
-	                new object(),
-                    new object()
+	                new(),
+                    new()
                 ];
                 var sut = SutFactory.Create<object>();
 
@@ -127,8 +127,8 @@ namespace Projac.Tests.Testing
             public void GivenArrayReturnsExpectedResultAfterVerifyWithoutToken()
             {
                 object[] messages = [
-	                new object(),
-                    new object()
+	                new(),
+                    new()
                 ];
                 var sut = SutFactory.Create<object>();
 
@@ -141,8 +141,8 @@ namespace Projac.Tests.Testing
             public void GivenEnumerableReturnsExpectedResultAfterVerifyWithToken()
             {
                 IEnumerable<object> messages = [
-	                new object(),
-                    new object()
+	                new(),
+                    new()
                 ];
                 var sut = SutFactory.Create<object>();
 
@@ -155,8 +155,8 @@ namespace Projac.Tests.Testing
             public void GivenEnumerableReturnsExpectedResultAfterVerifyWithoutToken()
             {
                 IEnumerable<object> messages = [
-	                new object(),
-                    new object()
+	                new(),
+                    new()
                 ];
                 var sut = SutFactory.Create<object>();
 
@@ -186,8 +186,8 @@ namespace Projac.Tests.Testing
             public void GivenArrayReturnsExpectedResultAfterVerifyWithToken()
             {
                 object[] messages = [
-	                new object(),
-                    new object()
+	                new(),
+                    new()
                 ];
 
                 var result = _sut.Given(messages).Verify((session, token) => null).Messages;
@@ -199,8 +199,8 @@ namespace Projac.Tests.Testing
             public void GivenArrayReturnsExpectedResultAfterVerifyWithoutToken()
             {
                 object[] messages = [
-	                new object(),
-                    new object()
+	                new(),
+                    new()
                 ];
 
                 var result = _sut.Given(messages).Verify(session => null).Messages;
@@ -212,8 +212,8 @@ namespace Projac.Tests.Testing
             public void GivenEnumerableReturnsExpectedResultAfterVerifyWithToken()
             {
                 IEnumerable<object> messages = [
-	                new object(),
-                    new object()
+	                new(),
+                    new()
                 ];
 
                 var result = _sut.Given(messages).Verify((session, token) => null).Messages;
@@ -225,8 +225,8 @@ namespace Projac.Tests.Testing
             public void GivenEnumerableReturnsExpectedResultAfterVerifyWithoutToken()
             {
                 IEnumerable<object> messages = [
-	                new object(),
-                    new object()
+	                new(),
+                    new()
                 ];
 
                 var result = _sut.Given(messages).Verify(session => null).Messages;
@@ -255,8 +255,8 @@ namespace Projac.Tests.Testing
             public void GivenArrayReturnsExpectedResultAfterVerifyWithToken()
             {
                 object[] messages = [
-	                new object(),
-                    new object()
+	                new(),
+                    new()
                 ];
 
                 var result = _sut.Given(messages).Verify((session, token) => null).Messages;
@@ -268,8 +268,8 @@ namespace Projac.Tests.Testing
             public void GivenArrayReturnsExpectedResultAfterVerifyWithoutToken()
             {
                 object[] messages = [
-	                new object(),
-                    new object()
+	                new(),
+                    new()
                 ];
 
                 var result = _sut.Given(messages).Verify(session => null).Messages;
@@ -281,8 +281,8 @@ namespace Projac.Tests.Testing
             public void GivenEnumerableReturnsExpectedResultAfterVerifyWithToken()
             {
                 IEnumerable<object> messages = [
-	                new object(),
-                    new object()
+	                new(),
+                    new()
                 ];
 
                 var result = _sut.Given(messages).Verify((session, token) => null).Messages;
@@ -294,8 +294,8 @@ namespace Projac.Tests.Testing
             public void GivenEnumerableReturnsExpectedResultAfterVerifyWithoutToken()
             {
                 IEnumerable<object> messages = [
-	                new object(),
-                    new object()
+	                new(),
+                    new()
                 ];
 
                 var result = _sut.Given(messages).Verify(session => null).Messages;

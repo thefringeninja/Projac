@@ -3,22 +3,22 @@
 /// <summary>
 ///     Represents the scale of a <see cref="TSqlDecimalValue" />. The maximum number of decimal digits that can be stored to the right of the decimal point. Scale must be a value from 0 through the precision of the decimal value. The default scale is 0.
 /// </summary>
-public struct TSqlDecimalScale : IEquatable<TSqlDecimalScale>, IComparable<TSqlDecimalScale>, IComparable<TSqlDecimalPrecision>
+public readonly struct TSqlDecimalScale : IEquatable<TSqlDecimalScale>, IComparable<TSqlDecimalScale>, IComparable<TSqlDecimalPrecision>
 {
 	/// <summary>
 	///     Represents the maximum precision value.
 	/// </summary>
-	public static readonly TSqlDecimalScale Max = new TSqlDecimalScale(38);
+	public static readonly TSqlDecimalScale Max = new(38);
 
 	/// <summary>
 	///     Represents the minimum precision value.
 	/// </summary>
-	public static readonly TSqlDecimalScale Min = new TSqlDecimalScale(0);
+	public static readonly TSqlDecimalScale Min = new(0);
 
 	/// <summary>
 	///     Represents the default value.
 	/// </summary>
-	public static readonly TSqlDecimalScale Default = new TSqlDecimalScale(0);
+	public static readonly TSqlDecimalScale Default = new(0);
 
 	private readonly byte _value;
 

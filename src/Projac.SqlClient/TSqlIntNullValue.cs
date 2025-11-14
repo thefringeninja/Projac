@@ -13,7 +13,7 @@ public class TSqlIntNullValue : IDbParameterValue
 	/// <summary>
 	///     The single instance of this value.
 	/// </summary>
-	public static readonly TSqlIntNullValue Instance = new TSqlIntNullValue();
+	public static readonly TSqlIntNullValue Instance = new();
 
 	private TSqlIntNullValue()
 	{

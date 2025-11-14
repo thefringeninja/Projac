@@ -3,12 +3,12 @@ namespace Projac.Npgsql;
 /// <summary>
 ///     Represents the size of a <see cref="NpgsqlVarBinaryValue" />.
 /// </summary>
-public struct NpgsqlVarBinarySize : IEquatable<NpgsqlVarBinarySize>
+public readonly struct NpgsqlVarBinarySize : IEquatable<NpgsqlVarBinarySize>
 {
 	/// <summary>
 	///     Represents the maximum size value.
 	/// </summary>
-	public static readonly NpgsqlVarBinarySize Max = new NpgsqlVarBinarySize(-1);
+	public static readonly NpgsqlVarBinarySize Max = new(-1);
 
 	private readonly int _value;
 
