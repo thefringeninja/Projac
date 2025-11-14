@@ -24,13 +24,11 @@ public static class ConcurrentResolve
 	/// <returns>A <see cref="SqlProjectionHandlerResolver">resolver</see>.</returns>
 	public static SqlProjectionHandlerResolver WhenAssignableToHandlerMessageType(SqlProjectionHandler[] handlers)
 	{
-		if (handlers == null)
-			throw new ArgumentNullException("handlers");
+		ArgumentNullException.ThrowIfNull(handlers);
 		var cache = new ConcurrentDictionary<Type, SqlProjectionHandler[]>();
 		return message =>
 		{
-			if (message == null)
-				throw new ArgumentNullException("message");
+			ArgumentNullException.ThrowIfNull(message);
 			SqlProjectionHandler[] result;
 			if (!cache.TryGetValue(message.GetType(), out result))
 			{

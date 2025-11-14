@@ -2119,8 +2119,7 @@ public class ParameterCountLimitedExceeded
 	{
 		get
 		{
-			return new[]
-			{
+			return [
 				P1,
 				P2,
 				P3,
@@ -4220,7 +4219,7 @@ public class ParameterCountLimitedExceeded
 				P2097,
 				P2098,
 				P2099
-			};
+			];
 		}
 	}
 }

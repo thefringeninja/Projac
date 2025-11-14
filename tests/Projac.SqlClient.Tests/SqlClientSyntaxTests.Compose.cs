@@ -110,31 +110,28 @@ public partial class SqlClientSyntaxTests
 	[Test]
 	public void ComposeCommandEnumerationReturnsComposer()
 	{
-		NUnit.Framework.Assert.That(Sql.Compose((IEnumerable<SqlNonQueryCommand>)new[]
-		{
+		NUnit.Framework.Assert.That(Sql.Compose((IEnumerable<SqlNonQueryCommand>) [
 			CommandFactory(),
 			CommandFactory()
-		}), Is.InstanceOf<SqlNonQueryCommandComposer>());
+		]), Is.InstanceOf<SqlNonQueryCommandComposer>());
 	}
 
 	[Test]
 	public void ComposeIfCommandEnumerationReturnsComposer([Values(true, false)]bool condition)
 	{
-		NUnit.Framework.Assert.That(Sql.ComposeIf(condition, (IEnumerable<SqlNonQueryCommand>)new[]
-		{
+		NUnit.Framework.Assert.That(Sql.ComposeIf(condition, (IEnumerable<SqlNonQueryCommand>) [
 			CommandFactory(),
 			CommandFactory()
-		}), Is.InstanceOf<SqlNonQueryCommandComposer>());
+		]), Is.InstanceOf<SqlNonQueryCommandComposer>());
 	}
 
 	[Test]
 	public void ComposeUnlessCommandEnumerationReturnsComposer([Values(true, false)]bool condition)
 	{
-		NUnit.Framework.Assert.That(Sql.ComposeUnless(condition, (IEnumerable<SqlNonQueryCommand>)new[]
-		{
+		NUnit.Framework.Assert.That(Sql.ComposeUnless(condition, (IEnumerable<SqlNonQueryCommand>) [
 			CommandFactory(),
 			CommandFactory()
-		}), Is.InstanceOf<SqlNonQueryCommandComposer>());
+		]), Is.InstanceOf<SqlNonQueryCommandComposer>());
 	}
 
 	[Test]
@@ -145,10 +142,9 @@ public partial class SqlClientSyntaxTests
 
 		SqlNonQueryCommand[] result = Sql.Compose(command1, command2);
 
-		Assert.That(result, Is.EquivalentTo(new []
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2
-		}));
+		]));
 	}
 
 	[Test]
@@ -159,10 +155,9 @@ public partial class SqlClientSyntaxTests
 
 		SqlNonQueryCommand[] result = Sql.ComposeIf(true, command1, command2);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2
-		}));
+		]));
 	}
 
 	[Test]
@@ -173,7 +168,7 @@ public partial class SqlClientSyntaxTests
 
 		SqlNonQueryCommand[] result = Sql.ComposeIf(false, command1, command2);
 
-		Assert.That(result, Is.EquivalentTo(new SqlNonQueryCommand[0]));
+		Assert.That(result, Is.EquivalentTo(Array.Empty<SqlNonQueryCommand>()));
 	}
 
 	[Test]
@@ -184,10 +179,9 @@ public partial class SqlClientSyntaxTests
 
 		SqlNonQueryCommand[] result = Sql.ComposeUnless(false, command1, command2);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2
-		}));
+		]));
 	}
 
 	[Test]
@@ -198,7 +192,7 @@ public partial class SqlClientSyntaxTests
 
 		SqlNonQueryCommand[] result = Sql.ComposeUnless(true, command1, command2);
 
-		Assert.That(result, Is.EquivalentTo(new SqlNonQueryCommand[0]));
+		Assert.That(result, Is.EquivalentTo(Array.Empty<SqlNonQueryCommand>()));
 	}
 
 	[Test]
@@ -207,15 +201,13 @@ public partial class SqlClientSyntaxTests
 		var command1 = CommandFactory();
 		var command2 = CommandFactory();
 
-		SqlNonQueryCommand[] result = Sql.Compose((IEnumerable<SqlNonQueryCommand>)new[]
-		{
+		SqlNonQueryCommand[] result = Sql.Compose((IEnumerable<SqlNonQueryCommand>) [
 			command1, command2
-		});
+		]);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2
-		}));
+		]));
 	}
 
 	[Test]
@@ -224,15 +216,13 @@ public partial class SqlClientSyntaxTests
 		var command1 = CommandFactory();
 		var command2 = CommandFactory();
 
-		SqlNonQueryCommand[] result = Sql.ComposeIf(true, (IEnumerable<SqlNonQueryCommand>)new[]
-		{
+		SqlNonQueryCommand[] result = Sql.ComposeIf(true, (IEnumerable<SqlNonQueryCommand>) [
 			command1, command2
-		});
+		]);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2
-		}));
+		]));
 	}
 
 	[Test]
@@ -241,12 +231,11 @@ public partial class SqlClientSyntaxTests
 		var command1 = CommandFactory();
 		var command2 = CommandFactory();
 
-		SqlNonQueryCommand[] result = Sql.ComposeIf(false, (IEnumerable<SqlNonQueryCommand>)new[]
-		{
+		SqlNonQueryCommand[] result = Sql.ComposeIf(false, (IEnumerable<SqlNonQueryCommand>) [
 			command1, command2
-		});
+		]);
 
-		Assert.That(result, Is.EquivalentTo(new SqlNonQueryCommand[0]));
+		Assert.That(result, Is.EquivalentTo(Array.Empty<SqlNonQueryCommand>()));
 	}
 
 	[Test]
@@ -255,15 +244,13 @@ public partial class SqlClientSyntaxTests
 		var command1 = CommandFactory();
 		var command2 = CommandFactory();
 
-		SqlNonQueryCommand[] result = Sql.ComposeUnless(false, (IEnumerable<SqlNonQueryCommand>)new[]
-		{
+		SqlNonQueryCommand[] result = Sql.ComposeUnless(false, (IEnumerable<SqlNonQueryCommand>) [
 			command1, command2
-		});
+		]);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2
-		}));
+		]));
 	}
 
 	[Test]
@@ -272,16 +259,15 @@ public partial class SqlClientSyntaxTests
 		var command1 = CommandFactory();
 		var command2 = CommandFactory();
 
-		SqlNonQueryCommand[] result = Sql.ComposeUnless(true, (IEnumerable<SqlNonQueryCommand>)new[]
-		{
+		SqlNonQueryCommand[] result = Sql.ComposeUnless(true, (IEnumerable<SqlNonQueryCommand>) [
 			command1, command2
-		});
+		]);
 
-		Assert.That(result, Is.EquivalentTo(new SqlNonQueryCommand[0]));
+		Assert.That(result, Is.EquivalentTo(Array.Empty<SqlNonQueryCommand>()));
 	}
 
 	private static SqlNonQueryCommand CommandFactory()
 	{
-		return new SqlNonQueryCommand("text", new DbParameter[0], CommandType.Text);
+		return new SqlNonQueryCommand("text", [], CommandType.Text);
 	}
 }

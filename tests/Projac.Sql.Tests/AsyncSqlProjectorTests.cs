@@ -110,7 +110,7 @@ public class AsyncSqlProjectorTests
 
 	private static AsyncSqlProjector SutFactory()
 	{
-		return SutFactory(message => new SqlProjectionHandler[0], new ExecutorStub());
+		return SutFactory(message => [], new ExecutorStub());
 	}
 
 	private static AsyncSqlProjector SutFactory(SqlProjectionHandlerResolver resolver)
@@ -120,7 +120,7 @@ public class AsyncSqlProjectorTests
 
 	private static AsyncSqlProjector SutFactory(IAsyncSqlNonQueryCommandExecutor executor)
 	{
-		return SutFactory(message => new SqlProjectionHandler[0], executor);
+		return SutFactory(message => [], executor);
 	}
 
 	private static AsyncSqlProjector SutFactory(SqlProjectionHandlerResolver resolver, IAsyncSqlNonQueryCommandExecutor executor)
@@ -130,7 +130,7 @@ public class AsyncSqlProjectorTests
 
 	class ExecutorMock : IAsyncSqlNonQueryCommandExecutor
 	{
-		public readonly List<SqlNonQueryCommand> Commands = new List<SqlNonQueryCommand>();
+		public readonly List<SqlNonQueryCommand> Commands = [];
 
 		public Task ExecuteNonQueryAsync(SqlNonQueryCommand command)
 		{

@@ -53,7 +53,7 @@ public partial class NpgsqlSyntax
 	{
 		if (parameters == null || parameters.Length == 0)
 		{
-			return new SqlQueryCommand(format, new DbParameter[0], CommandType.StoredProcedure);
+			return new SqlQueryCommand(format, [], CommandType.StoredProcedure);
 		}
 		ThrowIfMaxParameterCountExceeded(parameters);
 		return new SqlQueryCommand(

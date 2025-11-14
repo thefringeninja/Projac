@@ -15,7 +15,7 @@ public class ConcurrentResolveTests
 	[Test]
 	public void WhenEqualToHandlerMessageTypeResolverThrowsWhenMessageIsNull()
 	{
-		var sut = ConcurrentResolve.WhenEqualToHandlerMessageType(new ProjectionHandler<object>[0]);
+		var sut = ConcurrentResolve.WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<object>>());
 		Assert.Throws<ArgumentNullException>(() => sut(null));
 	}
 
@@ -40,7 +40,7 @@ public class ConcurrentResolveTests
 	[Test]
 	public void WhenAssignableToHandlerMessageTypeResolverThrowsWhenMessageIsNull()
 	{
-		var sut = ConcurrentResolve.WhenAssignableToHandlerMessageType(new ProjectionHandler<object>[0]);
+		var sut = ConcurrentResolve.WhenAssignableToHandlerMessageType(Array.Empty<ProjectionHandler<object>>());
 		Assert.Throws<ArgumentNullException>(() => sut(null));
 	}
 

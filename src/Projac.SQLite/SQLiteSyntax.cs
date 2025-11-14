@@ -12,7 +12,7 @@ public partial class SQLiteSyntax
 	private static DbParameter[] CollectFromAnonymousType(object parameters)
 	{
 		if (parameters == null)
-			return new DbParameter[0];
+			return [];
 		return parameters.
 			GetType().
 			GetProperties(BindingFlags.Instance | BindingFlags.Public).

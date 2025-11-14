@@ -53,7 +53,7 @@ public partial class SQLiteSyntax
 	{
 		if (parameters == null || parameters.Length == 0)
 		{
-			return new SqlQueryCommand(format, new DbParameter[0], CommandType.Text);
+			return new SqlQueryCommand(format, [], CommandType.Text);
 		}
 		return new SqlQueryCommand(
 			string.Format(format,

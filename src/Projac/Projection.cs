@@ -14,7 +14,7 @@ public abstract class Projection<TConnection> : IEnumerable<ProjectionHandler<TC
 	/// </summary>
 	protected Projection()
 	{
-		_handlers = new List<ProjectionHandler<TConnection>>();
+		_handlers = [];
 	}
  
 	/// <summary>
@@ -25,7 +25,7 @@ public abstract class Projection<TConnection> : IEnumerable<ProjectionHandler<TC
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="handler" /> is <c>null</c>.</exception>
 	protected void When<TMessage>(Func<TConnection, TMessage, Task> handler)
 	{
-		if (handler == null) throw new ArgumentNullException("handler");
+		ArgumentNullException.ThrowIfNull(handler);
 		_handlers.Add(
 			new ProjectionHandler<TConnection>(
 				typeof(TMessage),
@@ -40,7 +40,7 @@ public abstract class Projection<TConnection> : IEnumerable<ProjectionHandler<TC
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="handler" /> is <c>null</c>.</exception>
 	protected void When<TMessage>(Action<TConnection, TMessage> handler)
 	{
-		if (handler == null) throw new ArgumentNullException("handler");
+		ArgumentNullException.ThrowIfNull(handler);
 		_handlers.Add(
 			new ProjectionHandler<TConnection>(
 				typeof(TMessage),
@@ -59,7 +59,7 @@ public abstract class Projection<TConnection> : IEnumerable<ProjectionHandler<TC
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="handler" /> is <c>null</c>.</exception>
 	protected void When<TMessage>(Func<TConnection, TMessage, CancellationToken, Task> handler)
 	{
-		if (handler == null) throw new ArgumentNullException("handler");
+		ArgumentNullException.ThrowIfNull(handler);
 		_handlers.Add(
 			new ProjectionHandler<TConnection>(
 				typeof(TMessage),

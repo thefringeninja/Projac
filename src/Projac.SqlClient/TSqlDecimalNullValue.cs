@@ -22,8 +22,8 @@ public class TSqlDecimalNullValue : IDbParameterValue
 	{
 		if (scale > precision)
 		{
-			throw new ArgumentOutOfRangeException("scale", scale,
-				string.Format("The scale ({0}) must be less than or equal to the precision ({1}).", scale, precision));
+			throw new ArgumentOutOfRangeException(nameof(scale), scale,
+				$"The scale ({scale}) must be less than or equal to the precision ({precision}).");
 		}
 
 		_precision = precision;

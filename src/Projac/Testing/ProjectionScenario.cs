@@ -16,10 +16,9 @@ public class ProjectionScenario<TConnection>
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="resolver"/> is <c>null</c>.</exception>
 	public ProjectionScenario(ProjectionHandlerResolver<TConnection> resolver)
 	{
-		if (resolver == null) 
-			throw new ArgumentNullException("resolver");
+		ArgumentNullException.ThrowIfNull(resolver);
 		_resolver = resolver;
-		_messages = new object[0];
+		_messages = [];
 	}
 
 	private ProjectionScenario(ProjectionHandlerResolver<TConnection> resolver, object[] messages)
@@ -36,7 +35,7 @@ public class ProjectionScenario<TConnection>
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="messages"/> is <c>null</c>.</exception>
 	public ProjectionScenario<TConnection> Given(params object[] messages)
 	{
-		if (messages == null) throw new ArgumentNullException("messages");
+		ArgumentNullException.ThrowIfNull(messages);
 		return new ProjectionScenario<TConnection>(
 			_resolver,
 			_messages.Concat(messages).ToArray());
@@ -64,8 +63,7 @@ public class ProjectionScenario<TConnection>
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="verification"/> is <c>null</c>.</exception>
 	public ProjectionTestSpecification<TConnection> Verify(Func<TConnection, Task<VerificationResult>> verification)
 	{
-		if (verification == null) 
-			throw new ArgumentNullException("verification");
+		ArgumentNullException.ThrowIfNull(verification);
 		return new ProjectionTestSpecification<TConnection>(
 			_resolver,
 			_messages,
@@ -80,8 +78,7 @@ public class ProjectionScenario<TConnection>
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="verification"/> is <c>null</c>.</exception>
 	public ProjectionTestSpecification<TConnection> Verify(Func<TConnection, CancellationToken, Task<VerificationResult>> verification)
 	{
-		if (verification == null) 
-			throw new ArgumentNullException("verification");
+		ArgumentNullException.ThrowIfNull(verification);
 		return new ProjectionTestSpecification<TConnection>(
 			_resolver,
 			_messages,

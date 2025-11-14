@@ -66,7 +66,7 @@ public class SqlProjectorTests
 
 	private static SqlProjector SutFactory()
 	{
-		return SutFactory(Resolve.WhenEqualToHandlerMessageType(new SqlProjectionHandler[0]), new ExecutorStub());
+		return SutFactory(Resolve.WhenEqualToHandlerMessageType([]), new ExecutorStub());
 	}
 
 	private static SqlProjector SutFactory(SqlProjectionHandlerResolver resolver)
@@ -76,7 +76,7 @@ public class SqlProjectorTests
 
 	private static SqlProjector SutFactory(ISqlNonQueryCommandExecutor executor)
 	{
-		return SutFactory(Resolve.WhenEqualToHandlerMessageType(new SqlProjectionHandler[0]), executor);
+		return SutFactory(Resolve.WhenEqualToHandlerMessageType([]), executor);
 	}
 
 	private static SqlProjector SutFactory(SqlProjectionHandlerResolver resolver, ISqlNonQueryCommandExecutor executor)
@@ -86,7 +86,7 @@ public class SqlProjectorTests
 
 	class ExecutorMock : ISqlNonQueryCommandExecutor
 	{
-		public readonly List<SqlNonQueryCommand> Commands = new List<SqlNonQueryCommand>();
+		public readonly List<SqlNonQueryCommand> Commands = [];
 
 		public void ExecuteNonQuery(SqlNonQueryCommand command)
 		{

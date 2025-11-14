@@ -15,7 +15,7 @@ public class ResolveTests
 	[Test]
 	public void WhenEqualToHandlerMessageTypeResolverThrowsWhenMessageIsNull()
 	{
-		var sut = Resolve.WhenEqualToHandlerMessageType(new ProjectionHandler<object>[0]);
+		var sut = Resolve.WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<object>>());
 		Assert.Throws<ArgumentNullException>(() => sut(null));
 	}
 
@@ -40,7 +40,7 @@ public class ResolveTests
 	[Test]
 	public void WhenAssignableToHandlerMessageTypeResolverThrowsWhenMessageIsNull()
 	{
-		var sut = Resolve.WhenAssignableToHandlerMessageType(new ProjectionHandler<object>[0]);
+		var sut = Resolve.WhenAssignableToHandlerMessageType(Array.Empty<ProjectionHandler<object>>());
 		Assert.Throws<ArgumentNullException>(() => sut(null));
 	}
 

@@ -18,8 +18,8 @@ public class AsyncSqlProjector
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="resolver"/> or <paramref name="executor"/> is <c>null</c>.</exception>
 	public AsyncSqlProjector(SqlProjectionHandlerResolver resolver, IAsyncSqlNonQueryCommandExecutor executor)
 	{
-		if (resolver == null) throw new ArgumentNullException("resolver");
-		if (executor == null) throw new ArgumentNullException("executor");
+		ArgumentNullException.ThrowIfNull(resolver);
+		ArgumentNullException.ThrowIfNull(executor);
 
 		_resolver = resolver;
 		_executor = executor;
@@ -51,7 +51,7 @@ public class AsyncSqlProjector
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="message"/> is <c>null</c>.</exception>
 	public Task<int> ProjectAsync(object message, CancellationToken cancellationToken)
 	{
-		if (message == null) throw new ArgumentNullException("message");
+		ArgumentNullException.ThrowIfNull(message);
 
 		return _executor.
 			ExecuteNonQueryAsync(
@@ -87,7 +87,7 @@ public class AsyncSqlProjector
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="messages"/> are <c>null</c>.</exception>
 	public Task<int> ProjectAsync(IEnumerable<object> messages, CancellationToken cancellationToken)
 	{
-		if (messages == null) throw new ArgumentNullException("messages");
+		ArgumentNullException.ThrowIfNull(messages);
 
 		return _executor.
 			ExecuteNonQueryAsync(

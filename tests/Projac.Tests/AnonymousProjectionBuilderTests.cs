@@ -28,18 +28,16 @@ public class AnonymousProjectionBuilderTests
 		var handler2 = new ProjectionHandler<object>(
 			typeof (object),
 			(_, __, ___) => TaskFactory());
-		var sut = new AnonymousProjectionBuilder<object>(new[]
-		{
+		var sut = new AnonymousProjectionBuilder<object>([
 			handler1, 
 			handler2
-		});
+		]);
 
 		var result = sut.Build();
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			handler1, handler2
-		}));
+		]));
 
 	}
 
@@ -132,11 +130,10 @@ public class AnonymousProjectionBuilderTests
 					var msg = new object();
 					var recorder = new CallRecordingConnection();
 					_.Handler(recorder, msg, CancellationToken.None).Wait();
-					return recorder.RecordedCalls.SequenceEqual(new[]
-					{
+					return recorder.RecordedCalls.SequenceEqual([
 						new Tuple<int, object, CancellationToken>(
 							1, msg, CancellationToken.None)
-					});
+					]);
 				} 
 				return false;
 			}),
@@ -162,11 +159,10 @@ public class AnonymousProjectionBuilderTests
 					var msg = new object();
 					var recorder = new CallRecordingConnection();
 					_.Handler(recorder, msg, CancellationToken.None).Wait();
-					return recorder.RecordedCalls.SequenceEqual(new[]
-					{
+					return recorder.RecordedCalls.SequenceEqual([
 						new Tuple<int, object, CancellationToken>(
 							1, msg, CancellationToken.None)
-					});
+					]);
 				}
 				return false;
 			}),
@@ -194,11 +190,10 @@ public class AnonymousProjectionBuilderTests
 					var recorder = new CallRecordingConnection();
 					var token = new CancellationToken();
 					_.Handler(recorder, msg, token).Wait();
-					return recorder.RecordedCalls.SequenceEqual(new[]
-					{
+					return recorder.RecordedCalls.SequenceEqual([
 						new Tuple<int, object, CancellationToken>(
 							1, msg, token)
-					});
+					]);
 				}
 				return false;
 			}),
@@ -233,11 +228,10 @@ public class AnonymousProjectionBuilderTests
 					var recorder = new CallRecordingConnection();
 					var token = new CancellationToken();
 					_.Handler(recorder, msg, token).Wait();
-					return recorder.RecordedCalls.SequenceEqual(new[]
-					{
+					return recorder.RecordedCalls.SequenceEqual([
 						new Tuple<int, object, CancellationToken>(
 							1, msg, token)
-					});
+					]);
 				}
 				return false;
 			}),
@@ -271,11 +265,10 @@ public class AnonymousProjectionBuilderTests
 					var recorder = new CallRecordingConnection();
 					var token = new CancellationToken();
 					_.Handler(recorder, msg, token).Wait();
-					return recorder.RecordedCalls.SequenceEqual(new[]
-					{
+					return recorder.RecordedCalls.SequenceEqual([
 						new Tuple<int, object, CancellationToken>(
 							1, msg, token)
-					});
+					]);
 				}
 				return false;
 			}),
@@ -309,11 +302,10 @@ public class AnonymousProjectionBuilderTests
 					var msg = new object();
 					var recorder = new CallRecordingConnection();
 					_.Handler(recorder, msg, CancellationToken.None).Wait();
-					return recorder.RecordedCalls.SequenceEqual(new[]
-					{
+					return recorder.RecordedCalls.SequenceEqual([
 						new Tuple<int, object, CancellationToken>(
 							1, msg, CancellationToken.None)
-					});
+					]);
 				}
 				return false;
 			}),

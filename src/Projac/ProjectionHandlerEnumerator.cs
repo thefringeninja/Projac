@@ -17,7 +17,7 @@ public class ProjectionHandlerEnumerator<TConnection> : IEnumerator<ProjectionHa
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="handlers"/> are <c>null</c>.</exception>
 	public ProjectionHandlerEnumerator(ProjectionHandler<TConnection>[] handlers)
 	{
-		if (handlers == null) throw new ArgumentNullException("handlers");
+		ArgumentNullException.ThrowIfNull(handlers);
 		_handlers = handlers;
 		_index = -1;
 	}

@@ -22,7 +22,7 @@ namespace Projac.Sql.Tests
             [SetUp]
             public void SetUp()
             {
-                _sut = new Any(new SqlProjectionHandler[0]);
+                _sut = new Any([]);
             }
 
             [Test]
@@ -44,7 +44,7 @@ namespace Projac.Sql.Tests
         {
             class WithoutHandlers : AnonymousSqlProjection
             {
-                public WithoutHandlers() : base(new SqlProjectionHandler[0])
+                public WithoutHandlers() : base([])
                 {
                 }
             }
@@ -98,12 +98,12 @@ namespace Projac.Sql.Tests
 
             private static SqlNonQueryCommand CommandFactory()
             {
-                return new SqlNonQueryCommandStub("", new DbParameter[0], CommandType.Text);
+                return new SqlNonQueryCommandStub("", [], CommandType.Text);
             }
 
             private static SqlProjectionHandler HandlerFactory(SqlNonQueryCommand command)
             {
-                return new SqlProjectionHandler(typeof(object), o => new[] {command});
+                return new SqlProjectionHandler(typeof(object), o => [command]);
             }
 
             private static SqlProjectionHandler HandlerFactory(SqlNonQueryCommand[] commands)
@@ -120,21 +120,19 @@ namespace Projac.Sql.Tests
             public void SetUp()
             {
                 _command = CommandFactory();
-                _commandArray = new[]
-                    {
-                        CommandFactory(), CommandFactory()
-                    };
+                _commandArray = [
+	                CommandFactory(), CommandFactory()
+                ];
 
                 var commands = new List<SqlNonQueryCommand>();
                 commands.Add(_command);
                 commands.AddRange(_commandArray);
                 _result = commands.ToArray();
 
-                _sut = new WithHandlers(new []
-                {
-                    HandlerFactory(_command),
-                    HandlerFactory(_commandArray),
-                });
+                _sut = new WithHandlers([
+	                HandlerFactory(_command),
+                    HandlerFactory(_commandArray)
+                ]);
             }
 
             [Test]

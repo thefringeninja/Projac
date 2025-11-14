@@ -29,12 +29,7 @@ public struct TSqlDateTime2Precision : IEquatable<TSqlDateTime2Precision>
 	/// <exception cref="System.ArgumentOutOfRangeException">value;The value must be between 0 and 7.</exception>
 	public TSqlDateTime2Precision(byte value)
 	{
-		if (value > 7)
-		{
-			throw new ArgumentOutOfRangeException("value", value,
-				string.Format("The value must be between {0} and {1}.", 0, 7));
-		}
-
+		ArgumentOutOfRangeException.ThrowIfGreaterThan(value, 7);
 		_value = value;
 	}
 

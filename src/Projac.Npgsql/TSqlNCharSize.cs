@@ -19,9 +19,8 @@ public struct NpgsqlNCharSize : IEquatable<NpgsqlNCharSize>
 	/// <exception cref="System.ArgumentOutOfRangeException">value;The value must be between -1 and 4000.</exception>
 	public NpgsqlNCharSize(int value)
 	{
-		if (value < -1 || value > Limits.MaxUnicodeSize)
-			throw new ArgumentOutOfRangeException("value", value,
-				string.Format("The value must be between -1 and {0}.", Limits.MaxUnicodeSize));
+		ArgumentOutOfRangeException.ThrowIfLessThan(value, -1);
+		ArgumentOutOfRangeException.ThrowIfGreaterThan(value, Limits.MaxUnicodeSize);
 		_value = value;
 	}
 

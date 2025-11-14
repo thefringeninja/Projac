@@ -72,70 +72,70 @@ public class NpgsqlBinaryValueTests
 	[Test]
 	public void TwoInstanceAreEqualIfTheyHaveTheSameValueAndSize()
 	{
-		var sut = SutFactory(new byte[] { 1, 2, 3 }, new NpgsqlBinarySize(123));
-		var other = SutFactory(new byte[] { 1, 2, 3 }, new NpgsqlBinarySize(123));
+		var sut = SutFactory([1, 2, 3], new NpgsqlBinarySize(123));
+		var other = SutFactory([1, 2, 3], new NpgsqlBinarySize(123));
 		Assert.That(sut.Equals(other), Is.True);
 	}
 
 	[Test]
 	public void TwoInstanceAreNotEqualIfTheirValueContentDiffers()
 	{
-		var sut = SutFactory(new byte[] { 1, 2, 3 }, new NpgsqlBinarySize(123));
-		var other = SutFactory(new byte[] { 4, 5, 6 }, new NpgsqlBinarySize(123));
+		var sut = SutFactory([1, 2, 3], new NpgsqlBinarySize(123));
+		var other = SutFactory([4, 5, 6], new NpgsqlBinarySize(123));
 		Assert.That(sut.Equals(other), Is.False);
 	}
 
 	[Test]
 	public void TwoInstanceAreNotEqualIfTheirValueLengthDiffers()
 	{
-		var sut = SutFactory(new byte[] { 1, 2, 3 }, new NpgsqlBinarySize(123));
-		var other = SutFactory(new byte[] { 1, 2 }, new NpgsqlBinarySize(123));
+		var sut = SutFactory([1, 2, 3], new NpgsqlBinarySize(123));
+		var other = SutFactory([1, 2], new NpgsqlBinarySize(123));
 		Assert.That(sut.Equals(other), Is.False);
 	}
 
 	[Test]
 	public void TwoInstanceAreNotEqualIfTheirSizeDiffers()
 	{
-		var sut = SutFactory(new byte[] { 1, 2, 3 }, new NpgsqlBinarySize(123));
-		var other = SutFactory(new byte[] { 1, 2, 3 }, new NpgsqlBinarySize(456));
+		var sut = SutFactory([1, 2, 3], new NpgsqlBinarySize(123));
+		var other = SutFactory([1, 2, 3], new NpgsqlBinarySize(456));
 		Assert.That(sut.Equals(other), Is.False);
 	}
 
 	[Test]
 	public void TwoInstanceHaveTheSameHashCodeIfTheyHaveTheSameValueAndSize()
 	{
-		var sut = SutFactory(new byte[] { 1, 2, 3 }, new NpgsqlBinarySize(123));
-		var other = SutFactory(new byte[] { 1, 2, 3 }, new NpgsqlBinarySize(123));
+		var sut = SutFactory([1, 2, 3], new NpgsqlBinarySize(123));
+		var other = SutFactory([1, 2, 3], new NpgsqlBinarySize(123));
 		Assert.That(sut.GetHashCode().Equals(other.GetHashCode()), Is.True);
 	}
 
 	[Test]
 	public void TwoInstanceDoNotHaveTheSameHashCodeIfTheirValueContentDiffers()
 	{
-		var sut = SutFactory(new byte[] { 1, 2, 3 }, new NpgsqlBinarySize(123));
-		var other = SutFactory(new byte[] { 4, 5, 6 }, new NpgsqlBinarySize(123));
+		var sut = SutFactory([1, 2, 3], new NpgsqlBinarySize(123));
+		var other = SutFactory([4, 5, 6], new NpgsqlBinarySize(123));
 		Assert.That(sut.GetHashCode().Equals(other.GetHashCode()), Is.False);
 	}
 
 	[Test]
 	public void TwoInstanceDoNotHaveTheSameHashCodeIfTheirValueLengthDiffers()
 	{
-		var sut = SutFactory(new byte[] { 1, 2, 3 }, new NpgsqlBinarySize(123));
-		var other = SutFactory(new byte[] { 1, 2 }, new NpgsqlBinarySize(123));
+		var sut = SutFactory([1, 2, 3], new NpgsqlBinarySize(123));
+		var other = SutFactory([1, 2], new NpgsqlBinarySize(123));
 		Assert.That(sut.GetHashCode().Equals(other.GetHashCode()), Is.False);
 	}
 
 	[Test]
 	public void TwoInstanceDoNotHaveTheSameHashCodeIfTheirSizeDiffers()
 	{
-		var sut = SutFactory(new byte[] { 1, 2, 3 }, new NpgsqlBinarySize(123));
-		var other = SutFactory(new byte[] { 1, 2, 3 }, new NpgsqlBinarySize(456));
+		var sut = SutFactory([1, 2, 3], new NpgsqlBinarySize(123));
+		var other = SutFactory([1, 2, 3], new NpgsqlBinarySize(456));
 		Assert.That(sut.GetHashCode().Equals(other.GetHashCode()), Is.False);
 	}
 
 	private static NpgsqlBinaryValue SutFactory()
 	{
-		return SutFactory(new byte[] { 1, 2, 3, 4, 5 }, new NpgsqlBinarySize(123));
+		return SutFactory([1, 2, 3, 4, 5], new NpgsqlBinarySize(123));
 	}
 
 	private static NpgsqlBinaryValue SutFactory(byte[] value, NpgsqlBinarySize size)

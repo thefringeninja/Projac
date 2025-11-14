@@ -11,7 +11,7 @@ public class AnonymousSqlProjectionBuilder
 	///     Initializes a new instance of the <see cref="AnonymousSqlProjectionBuilder" /> class.
 	/// </summary>
 	public AnonymousSqlProjectionBuilder() :
-		this(new SqlProjectionHandler[0])
+		this([])
 	{
 	}
 
@@ -21,7 +21,7 @@ public class AnonymousSqlProjectionBuilder
 	/// <exception cref="ArgumentNullException">Thrown if <paramref name="handlers"/> is <c>null</c>.</exception>
 	public AnonymousSqlProjectionBuilder(SqlProjectionHandler[] handlers)
 	{
-		if (handlers == null) throw new ArgumentNullException("handlers");
+		ArgumentNullException.ThrowIfNull(handlers);
 		_handlers = handlers;
 	}
 
@@ -34,17 +34,16 @@ public class AnonymousSqlProjectionBuilder
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="handler" /> is <c>null</c>.</exception>
 	public AnonymousSqlProjectionBuilder When<TMessage>(Func<TMessage, SqlNonQueryCommand> handler)
 	{
-		if (handler == null) throw new ArgumentNullException("handler");
+		ArgumentNullException.ThrowIfNull(handler);
 		return new AnonymousSqlProjectionBuilder(
 			_handlers.Concat(
-					new[]
-					{
-						new SqlProjectionHandler
+				[
+					new SqlProjectionHandler
 						(
 							typeof (TMessage),
-							message => new[] {handler((TMessage) message)}
+							message => [handler((TMessage) message)]
 						)
-					}).
+				]).
 				ToArray());
 	}
 
@@ -57,17 +56,16 @@ public class AnonymousSqlProjectionBuilder
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="handler" /> is <c>null</c>.</exception>
 	public AnonymousSqlProjectionBuilder When<TMessage>(Func<TMessage, SqlNonQueryCommand[]> handler)
 	{
-		if (handler == null) throw new ArgumentNullException("handler");
+		ArgumentNullException.ThrowIfNull(handler);
 		return new AnonymousSqlProjectionBuilder(
 			_handlers.Concat(
-					new[]
-					{
-						new SqlProjectionHandler
+				[
+					new SqlProjectionHandler
 						(
 							typeof (TMessage),
 							message => handler((TMessage) message)
 						)
-					}).
+				]).
 				ToArray());
 	}
 
@@ -80,17 +78,16 @@ public class AnonymousSqlProjectionBuilder
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="handler" /> is <c>null</c>.</exception>
 	public AnonymousSqlProjectionBuilder When<TMessage>(Func<TMessage, IEnumerable<SqlNonQueryCommand>> handler)
 	{
-		if (handler == null) throw new ArgumentNullException("handler");
+		ArgumentNullException.ThrowIfNull(handler);
 		return new AnonymousSqlProjectionBuilder(
 			_handlers.Concat(
-					new[]
-					{
-						new SqlProjectionHandler
+				[
+					new SqlProjectionHandler
 						(
 							typeof (TMessage),
 							message => handler((TMessage) message)
 						)
-					}).
+				]).
 				ToArray());
 	}
 

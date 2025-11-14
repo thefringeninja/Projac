@@ -19,9 +19,8 @@ public struct TSqlNCharSize : IEquatable<TSqlNCharSize>
 	/// <exception cref="System.ArgumentOutOfRangeException">value;The value must be between -1 and 4000.</exception>
 	public TSqlNCharSize(int value)
 	{
-		if (value < -1 || value > Limits.MaxUnicodeSize)
-			throw new ArgumentOutOfRangeException("value", value,
-				string.Format("The value must be between -1 and {0}.", Limits.MaxUnicodeSize));
+		ArgumentOutOfRangeException.ThrowIfLessThan(value, -1);
+		ArgumentOutOfRangeException.ThrowIfGreaterThan(value, Limits.MaxUnicodeSize);
 		_value = value;
 	}
 

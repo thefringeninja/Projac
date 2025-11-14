@@ -17,7 +17,7 @@ public class ProjectorProjectCases
 				connection.RecordCall(1, message, token);
 				return task;
 			});
-		var resolver1 = new ProjectionHandlerResolver<CallRecordingConnection>(message => new[] { handler1 });
+		var resolver1 = new ProjectionHandlerResolver<CallRecordingConnection>(message => [handler1]);
 		yield return new TestCaseData(
 			resolver1,
 			message1,
@@ -29,12 +29,11 @@ public class ProjectorProjectCases
 		//Mismatch
 		var token2 = new CancellationToken();
 		var message2 = new object();
-		var resolver2 = new ProjectionHandlerResolver<CallRecordingConnection>(message => new ProjectionHandler<CallRecordingConnection>[0]);
+		var resolver2 = new ProjectionHandlerResolver<CallRecordingConnection>(message => []);
 		yield return new TestCaseData(
 			resolver2,
 			message2,
-			token2,
-			new Tuple<int, object, CancellationToken>[0]);
+			token2, Array.Empty<Tuple<int, object, CancellationToken>>());
 		//Multimatch
 		var token3 = new CancellationToken();
 		var message3 = new object();
@@ -52,7 +51,7 @@ public class ProjectorProjectCases
 				connection.RecordCall(4, message, token);
 				return task;
 			});
-		var resolver3 = new ProjectionHandlerResolver<CallRecordingConnection>(message => new[] { handler3, handler4 });
+		var resolver3 = new ProjectionHandlerResolver<CallRecordingConnection>(message => [handler3, handler4]);
 		yield return new TestCaseData(
 			resolver3,
 			message3,
@@ -76,7 +75,7 @@ public class ProjectorProjectCases
 				connection.RecordCall(1, message, token);
 				return task;
 			});
-		var resolver1 = new ProjectionHandlerResolver<CallRecordingConnection>(message => new[] { handler1 });
+		var resolver1 = new ProjectionHandlerResolver<CallRecordingConnection>(message => [handler1]);
 		yield return new TestCaseData(
 			resolver1,
 			message1,
@@ -86,11 +85,10 @@ public class ProjectorProjectCases
 			});
 		//Mismatch
 		var message2 = new object();
-		var resolver2 = new ProjectionHandlerResolver<CallRecordingConnection>(message => new ProjectionHandler<CallRecordingConnection>[0]);
+		var resolver2 = new ProjectionHandlerResolver<CallRecordingConnection>(message => []);
 		yield return new TestCaseData(
 			resolver2,
-			message2,
-			new Tuple<int, object, CancellationToken>[0]);
+			message2, Array.Empty<Tuple<int, object, CancellationToken>>());
 		//Multimatch
 		var message3 = new object();
 		var handler3 = new ProjectionHandler<CallRecordingConnection>(
@@ -107,7 +105,7 @@ public class ProjectorProjectCases
 				connection.RecordCall(4, message, token);
 				return task;
 			});
-		var resolver3 = new ProjectionHandlerResolver<CallRecordingConnection>(message => new[] { handler3, handler4 });
+		var resolver3 = new ProjectionHandlerResolver<CallRecordingConnection>(message => [handler3, handler4]);
 		yield return new TestCaseData(
 			resolver3,
 			message3,
@@ -130,7 +128,7 @@ public class ProjectorProjectCases
 				connection.RecordCall(1, message, token);
 				return task;
 			});
-		var resolver1 = Resolve.WhenEqualToHandlerMessageType(new[] { handler1 });
+		var resolver1 = Resolve.WhenEqualToHandlerMessageType([handler1]);
 		yield return new TestCaseData(
 			resolver1,
 			new object[] { "123", 123 },
@@ -141,12 +139,11 @@ public class ProjectorProjectCases
 			});
 		//Mismatch
 		var token2 = new CancellationToken();
-		var resolver2 = Resolve.WhenEqualToHandlerMessageType(new ProjectionHandler<CallRecordingConnection>[0]);
+		var resolver2 = Resolve.WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<CallRecordingConnection>>());
 		yield return new TestCaseData(
 			resolver2,
 			new object[] { new object(), 123 },
-			token2,
-			new Tuple<int, object, CancellationToken>[0]);
+			token2, Array.Empty<Tuple<int, object, CancellationToken>>());
 		//Multimatch
 		var token3 = new CancellationToken();
 		var message3 = new object();
@@ -165,7 +162,7 @@ public class ProjectorProjectCases
 				connection.RecordCall(2, message, token);
 				return task;
 			});
-		var resolver3 = Resolve.WhenEqualToHandlerMessageType(new[] { handler3, handler4 });
+		var resolver3 = Resolve.WhenEqualToHandlerMessageType([handler3, handler4]);
 		yield return new TestCaseData(
 			resolver3,
 			new object[] {message3, message4},
@@ -193,7 +190,7 @@ public class ProjectorProjectCases
 				connection.RecordCall(2, message, token);
 				return task;
 			});
-		var resolver4 = Resolve.WhenEqualToHandlerMessageType(new[] { handler5, handler6 });
+		var resolver4 = Resolve.WhenEqualToHandlerMessageType([handler5, handler6]);
 		yield return new TestCaseData(
 			resolver4,
 			new object[] { "123", 123 },
@@ -221,7 +218,7 @@ public class ProjectorProjectCases
 				return task;
 			});
 
-		var resolver5 = Resolve.WhenEqualToHandlerMessageType(new[] { handler7, handler8 });
+		var resolver5 = Resolve.WhenEqualToHandlerMessageType([handler7, handler8]);
 		yield return new TestCaseData(
 			resolver5,
 			new object[] { message5 },
@@ -244,7 +241,7 @@ public class ProjectorProjectCases
 				connection.RecordCall(1, message, token);
 				return task;
 			});
-		var resolver1 = Resolve.WhenEqualToHandlerMessageType(new[] { handler1 });
+		var resolver1 = Resolve.WhenEqualToHandlerMessageType([handler1]);
 		yield return new TestCaseData(
 			resolver1,
 			new object[] { "123", 123 },
@@ -253,11 +250,10 @@ public class ProjectorProjectCases
 				new Tuple<int, object, CancellationToken>(1, "123", CancellationToken.None)
 			});
 		//Mismatch
-		var resolver2 = Resolve.WhenEqualToHandlerMessageType(new ProjectionHandler<CallRecordingConnection>[0]);
+		var resolver2 = Resolve.WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<CallRecordingConnection>>());
 		yield return new TestCaseData(
 			resolver2,
-			new object[] { new object(), 123 },
-			new Tuple<int, object, CancellationToken>[0]);
+			new object[] { new object(), 123 }, Array.Empty<Tuple<int, object, CancellationToken>>());
 		//Multimatch
 		var message3 = new object();
 		var message4 = new object();
@@ -275,7 +271,7 @@ public class ProjectorProjectCases
 				connection.RecordCall(2, message, token);
 				return task;
 			});
-		var resolver3 = Resolve.WhenEqualToHandlerMessageType(new[] { handler3, handler4 });
+		var resolver3 = Resolve.WhenEqualToHandlerMessageType([handler3, handler4]);
 		yield return new TestCaseData(
 			resolver3,
 			new object[] { message3, message4 },
@@ -301,7 +297,7 @@ public class ProjectorProjectCases
 				connection.RecordCall(2, message, token);
 				return task;
 			});
-		var resolver4 = Resolve.WhenEqualToHandlerMessageType(new[] { handler5, handler6 });
+		var resolver4 = Resolve.WhenEqualToHandlerMessageType([handler5, handler6]);
 		yield return new TestCaseData(
 			resolver4,
 			new object[] { "123", 123 },
@@ -327,7 +323,7 @@ public class ProjectorProjectCases
 				return task;
 			});
 
-		var resolver5 = Resolve.WhenEqualToHandlerMessageType(new[] { handler7, handler8 });
+		var resolver5 = Resolve.WhenEqualToHandlerMessageType([handler7, handler8]);
 		yield return new TestCaseData(
 			resolver5,
 			new object[] { message5 },

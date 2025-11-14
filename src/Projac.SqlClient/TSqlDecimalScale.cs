@@ -29,12 +29,7 @@ public struct TSqlDecimalScale : IEquatable<TSqlDecimalScale>, IComparable<TSqlD
 	/// <exception cref="System.ArgumentOutOfRangeException">Thrown when the value is not between 0 and 38.</exception>
 	public TSqlDecimalScale(byte value)
 	{
-		if (value > 38)
-		{
-			throw new ArgumentOutOfRangeException("value", value,
-				string.Format("The value must be between {0} and {1}.", 0, 38));
-		}
-
+		ArgumentOutOfRangeException.ThrowIfGreaterThan(value, 38);
 		_value = value;
 	}
 

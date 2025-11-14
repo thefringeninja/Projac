@@ -17,9 +17,8 @@ public struct TSqlBinarySize : IEquatable<TSqlBinarySize>
 	/// </exception>
 	public TSqlBinarySize(int value)
 	{
-		if (value < 0 || value > Limits.MaxByteSize)
-			throw new ArgumentOutOfRangeException("value", value,
-				string.Format("The value must be between 0 and {0}.", Limits.MaxByteSize));
+		ArgumentOutOfRangeException.ThrowIfLessThan(value, 0);
+		ArgumentOutOfRangeException.ThrowIfGreaterThan(value, Limits.MaxByteSize);
 		_value = value;
 	}
 

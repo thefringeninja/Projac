@@ -27,8 +27,8 @@ public class SqlCommandExecutor :
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="dbProviderFactory" /> or <paramref name="connectionString" /> is <c>null</c>.</exception>
 	public SqlCommandExecutor(DbProviderFactory dbProviderFactory, string connectionString, int commandTimeout = 30)
 	{
-		if (dbProviderFactory == null) throw new ArgumentNullException("dbProviderFactory");
-		if (connectionString == null) throw new ArgumentNullException("connectionString");
+		ArgumentNullException.ThrowIfNull(dbProviderFactory);
+		ArgumentNullException.ThrowIfNull(connectionString);
 		_dbProviderFactory = dbProviderFactory;
 		_connectionString = connectionString;
 		_commandTimeout = commandTimeout;
@@ -42,8 +42,7 @@ public class SqlCommandExecutor :
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="command" /> is <c>null</c>.</exception>
 	public void ExecuteNonQuery(SqlNonQueryCommand command)
 	{
-		if (command == null) 
-			throw new ArgumentNullException("command");
+		ArgumentNullException.ThrowIfNull(command);
 
 		using (var dbConnection = _dbProviderFactory.CreateConnection())
 		{
@@ -77,8 +76,7 @@ public class SqlCommandExecutor :
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="commands" /> are <c>null</c>.</exception>
 	public int ExecuteNonQuery(IEnumerable<SqlNonQueryCommand> commands)
 	{
-		if (commands == null) 
-			throw new ArgumentNullException("commands");
+		ArgumentNullException.ThrowIfNull(commands);
 
 		using (var dbConnection = _dbProviderFactory.CreateConnection())
 		{
@@ -137,7 +135,7 @@ public class SqlCommandExecutor :
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="commands" /> are <c>null</c>.</exception>
 	public async Task<int> ExecuteNonQueryAsync(IEnumerable<SqlNonQueryCommand> commands, CancellationToken cancellationToken)
 	{
-		if (commands == null) throw new ArgumentNullException("commands");
+		ArgumentNullException.ThrowIfNull(commands);
 		using (var dbConnection = _dbProviderFactory.CreateConnection())
 		{
 			dbConnection.ConnectionString = _connectionString;
@@ -176,7 +174,7 @@ public class SqlCommandExecutor :
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="command" /> is <c>null</c>.</exception>
 	public DbDataReader ExecuteReader(SqlQueryCommand command)
 	{
-		if (command == null) throw new ArgumentNullException("command");
+		ArgumentNullException.ThrowIfNull(command);
 
 		var dbConnection = _dbProviderFactory.CreateConnection();
 		dbConnection.ConnectionString = _connectionString;
@@ -209,8 +207,7 @@ public class SqlCommandExecutor :
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="command" /> is <c>null</c>.</exception>
 	public object ExecuteScalar(SqlQueryCommand command)
 	{
-		if (command == null)
-			throw new ArgumentNullException("command");
+		ArgumentNullException.ThrowIfNull(command);
 
 		var dbConnection = _dbProviderFactory.CreateConnection();
 		dbConnection.ConnectionString = _connectionString;
@@ -259,8 +256,7 @@ public class SqlCommandExecutor :
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="command" /> is <c>null</c>.</exception>
 	public async Task<object> ExecuteScalarAsync(SqlQueryCommand command, CancellationToken cancellationToken)
 	{
-		if (command == null)
-			throw new ArgumentNullException("command");
+		ArgumentNullException.ThrowIfNull(command);
 
 		using (var dbConnection = _dbProviderFactory.CreateConnection())
 		{
@@ -310,7 +306,7 @@ public class SqlCommandExecutor :
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="command" /> is <c>null</c>.</exception>
 	public async Task<DbDataReader> ExecuteReaderAsync(SqlQueryCommand command, CancellationToken cancellationToken)
 	{
-		if (command == null) throw new ArgumentNullException("command");
+		ArgumentNullException.ThrowIfNull(command);
 
 		var dbConnection = _dbProviderFactory.CreateConnection();
 		dbConnection.ConnectionString = _connectionString;
@@ -361,8 +357,7 @@ public class SqlCommandExecutor :
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="command" /> is <c>null</c>.</exception>
 	public async Task ExecuteNonQueryAsync(SqlNonQueryCommand command, CancellationToken cancellationToken)
 	{
-		if (command == null)
-			throw new ArgumentNullException("command");
+		ArgumentNullException.ThrowIfNull(command);
 
 		using (var dbConnection = _dbProviderFactory.CreateConnection())
 		{

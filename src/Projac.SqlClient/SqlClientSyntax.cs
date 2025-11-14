@@ -12,7 +12,7 @@ public partial class SqlClientSyntax
 	private static DbParameter[] CollectFromAnonymousType(object parameters)
 	{
 		if (parameters == null)
-			return new DbParameter[0];
+			return [];
 		return ThrowIfMaxParameterCountExceeded(
 			parameters.
 				GetType().
@@ -28,8 +28,8 @@ public partial class SqlClientSyntax
 	{
 		if (parameters.Length > Limits.MaxParameterCount)
 			throw new ArgumentException(
-				string.Format("The parameter count is limited to {0}.", Limits.MaxParameterCount),
-				"parameters");
+				$"The parameter count is limited to {Limits.MaxParameterCount}.",
+				nameof(parameters));
 		return parameters;
 	}
 
@@ -39,8 +39,8 @@ public partial class SqlClientSyntax
 	{
 		if (parameters.Length > Limits.MaxParameterCount)
 			throw new ArgumentException(
-				string.Format("The parameter count is limited to {0}.", Limits.MaxParameterCount),
-				"parameters");
+				$"The parameter count is limited to {Limits.MaxParameterCount}.",
+				nameof(parameters));
 	}
 
 	private static string FormatDbParameterName(string name)

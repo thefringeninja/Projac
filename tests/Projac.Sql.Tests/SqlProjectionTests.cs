@@ -86,10 +86,9 @@ namespace Projac.Sql.Tests
                 public WithHandlers()
                 {
                     _command = CommandFactory();
-                    _commandArray = new[]
-                    {
-                        CommandFactory(), CommandFactory()
-                    };
+                    _commandArray = [
+	                    CommandFactory(), CommandFactory()
+                    ];
                     _commandEnumeration = Enumerable.Repeat(CommandFactory(), 1);
 
                     var commands = new List<SqlNonQueryCommand>();
@@ -110,7 +109,7 @@ namespace Projac.Sql.Tests
 
                 private static SqlNonQueryCommand CommandFactory()
                 {
-                    return new SqlNonQueryCommandStub("", new DbParameter[0], CommandType.Text);
+                    return new SqlNonQueryCommandStub("", [], CommandType.Text);
                 }
             }
 
@@ -179,7 +178,7 @@ namespace Projac.Sql.Tests
 
                 Assert.That(
                     sut.Handlers.SelectMany(_ => _.Handler(null)),
-                    Is.EquivalentTo(new[] {command}));
+                    Is.EquivalentTo([command]));
             }
 
             [Test]
@@ -229,7 +228,7 @@ namespace Projac.Sql.Tests
 
             private static SqlNonQueryCommand CommandFactory()
             {
-                return new SqlNonQueryCommandStub("", new DbParameter[0], CommandType.Text);
+                return new SqlNonQueryCommandStub("", [], CommandType.Text);
             }
 
             private class RegisterNullHandler : SqlProjection
@@ -271,7 +270,7 @@ namespace Projac.Sql.Tests
 
                 Assert.That(
                     sut.Handlers.SelectMany(_ => _.Handler(null)),
-                    Is.EquivalentTo(new[] {command1, command2}));
+                    Is.EquivalentTo([command1, command2]));
             }
 
             [Test]
@@ -348,7 +347,7 @@ namespace Projac.Sql.Tests
 
             private static SqlNonQueryCommand CommandFactory()
             {
-                return new SqlNonQueryCommandStub("", new DbParameter[0], CommandType.Text);
+                return new SqlNonQueryCommandStub("", [], CommandType.Text);
             }
         }
 
@@ -373,7 +372,7 @@ namespace Projac.Sql.Tests
 
                 Assert.That(
                     sut.Handlers.SelectMany(_ => _.Handler(null)),
-                    Is.EquivalentTo(new[] {command1, command2}));
+                    Is.EquivalentTo([command1, command2]));
             }
 
             [Test]
@@ -450,7 +449,7 @@ namespace Projac.Sql.Tests
 
             private static SqlNonQueryCommand CommandFactory()
             {
-                return new SqlNonQueryCommandStub("", new DbParameter[0], CommandType.Text);
+                return new SqlNonQueryCommandStub("", [], CommandType.Text);
             }
         }
     }

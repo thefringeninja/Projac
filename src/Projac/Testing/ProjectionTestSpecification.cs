@@ -25,9 +25,9 @@ public class ProjectionTestSpecification<TConnection>
 	/// </exception>
 	public ProjectionTestSpecification(ProjectionHandlerResolver<TConnection> resolver, object[] messages, Func<TConnection, CancellationToken, Task<VerificationResult>> verification)
 	{
-		if (resolver == null) throw new ArgumentNullException("resolver");
-		if (messages == null) throw new ArgumentNullException("messages");
-		if (verification == null) throw new ArgumentNullException("verification");
+		ArgumentNullException.ThrowIfNull(resolver);
+		ArgumentNullException.ThrowIfNull(messages);
+		ArgumentNullException.ThrowIfNull(verification);
 		_resolver = resolver;
 		_messages = messages;
 		_verification = verification;

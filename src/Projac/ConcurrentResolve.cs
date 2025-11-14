@@ -24,13 +24,11 @@ public static class ConcurrentResolve
 	/// <returns>A <see cref="ProjectionHandlerResolver{TConnection}">resolver</see>.</returns>
 	public static ProjectionHandlerResolver<TConnection> WhenAssignableToHandlerMessageType<TConnection>(ProjectionHandler<TConnection>[] handlers)
 	{
-		if (handlers == null)
-			throw new ArgumentNullException("handlers");
+		ArgumentNullException.ThrowIfNull(handlers);
 		var cache = new ConcurrentDictionary<Type, ProjectionHandler<TConnection>[]>();
 		return message =>
 		{
-			if (message == null)
-				throw new ArgumentNullException("message");
+			ArgumentNullException.ThrowIfNull(message);
 			ProjectionHandler<TConnection>[] result;
 			if (!cache.TryGetValue(message.GetType(), out result))
 			{

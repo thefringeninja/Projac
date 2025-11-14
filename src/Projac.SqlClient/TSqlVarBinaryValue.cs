@@ -21,8 +21,7 @@ public class TSqlVarBinaryValue : IDbParameterValue
 	/// <exception cref="System.ArgumentNullException">Thrown when the <paramref name="value" /> is <c>null</c>.</exception>
 	public TSqlVarBinaryValue(byte[] value, TSqlVarBinarySize size)
 	{
-		if (value == null)
-			throw new ArgumentNullException("value");
+		ArgumentNullException.ThrowIfNull(value);
 		_value = value;
 		_size = size;
 	}

@@ -86,7 +86,7 @@ namespace Projac.Tests.Testing
             [Test]
             public void ResolverReturnsExpectedResultAfterVerifyWithToken()
             {
-                var resolver = Resolve.WhenEqualToHandlerMessageType(new ProjectionHandler<object>[0]);
+                var resolver = Resolve.WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<object>>());
                 var sut = SutFactory.Create(resolver);
 
                 var result = sut.Verify((session, token) => null).Resolver;
@@ -97,7 +97,7 @@ namespace Projac.Tests.Testing
             [Test]
             public void ResolverReturnsExpectedResultAfterVerifyWithoutToken()
             {
-                var resolver = Resolve.WhenEqualToHandlerMessageType(new ProjectionHandler<object>[0]);
+                var resolver = Resolve.WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<object>>());
                 var sut = SutFactory.Create(resolver);
 
                 var result = sut.Verify(session => null).Resolver;
@@ -112,11 +112,10 @@ namespace Projac.Tests.Testing
             [Test]
             public void GivenArrayReturnsExpectedResultAfterVerifyWithToken()
             {
-                object[] messages =
-                {
-                    new object(),
+                object[] messages = [
+	                new object(),
                     new object()
-                };
+                ];
                 var sut = SutFactory.Create<object>();
 
                 var result = sut.Given(messages).Verify((session, token) => null).Messages;
@@ -127,11 +126,10 @@ namespace Projac.Tests.Testing
             [Test]
             public void GivenArrayReturnsExpectedResultAfterVerifyWithoutToken()
             {
-                object[] messages =
-                {
-                    new object(),
+                object[] messages = [
+	                new object(),
                     new object()
-                };
+                ];
                 var sut = SutFactory.Create<object>();
 
                 var result = sut.Given(messages).Verify(session => null).Messages;
@@ -142,11 +140,10 @@ namespace Projac.Tests.Testing
             [Test]
             public void GivenEnumerableReturnsExpectedResultAfterVerifyWithToken()
             {
-                IEnumerable<object> messages = new []
-                {
-                    new object(),
+                IEnumerable<object> messages = [
+	                new object(),
                     new object()
-                };
+                ];
                 var sut = SutFactory.Create<object>();
 
                 var result = sut.Given(messages).Verify((session, token) => null).Messages;
@@ -157,11 +154,10 @@ namespace Projac.Tests.Testing
             [Test]
             public void GivenEnumerableReturnsExpectedResultAfterVerifyWithoutToken()
             {
-                IEnumerable<object> messages = new[]
-                {
-                    new object(),
+                IEnumerable<object> messages = [
+	                new object(),
                     new object()
-                };
+                ];
                 var sut = SutFactory.Create<object>();
 
                 var result = sut.Given(messages).Verify(session => null).Messages;
@@ -181,19 +177,18 @@ namespace Projac.Tests.Testing
             public void SetUp()
             {
                 _resolver = Resolve.
-                    WhenEqualToHandlerMessageType(new ProjectionHandler<object>[0]);
-                _messages = new[] { new object(), new object() };
+                    WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<object>>());
+                _messages = [new object(), new object()];
                 _sut = new ProjectionScenario<object>(_resolver).Given(_messages);
             }
 
             [Test]
             public void GivenArrayReturnsExpectedResultAfterVerifyWithToken()
             {
-                object[] messages =
-                {
-                    new object(),
+                object[] messages = [
+	                new object(),
                     new object()
-                };
+                ];
 
                 var result = _sut.Given(messages).Verify((session, token) => null).Messages;
 
@@ -203,11 +198,10 @@ namespace Projac.Tests.Testing
             [Test]
             public void GivenArrayReturnsExpectedResultAfterVerifyWithoutToken()
             {
-                object[] messages =
-                {
-                    new object(),
+                object[] messages = [
+	                new object(),
                     new object()
-                };
+                ];
 
                 var result = _sut.Given(messages).Verify(session => null).Messages;
 
@@ -217,11 +211,10 @@ namespace Projac.Tests.Testing
             [Test]
             public void GivenEnumerableReturnsExpectedResultAfterVerifyWithToken()
             {
-                IEnumerable<object> messages = new[]
-                {
-                    new object(),
+                IEnumerable<object> messages = [
+	                new object(),
                     new object()
-                };
+                ];
 
                 var result = _sut.Given(messages).Verify((session, token) => null).Messages;
 
@@ -231,11 +224,10 @@ namespace Projac.Tests.Testing
             [Test]
             public void GivenEnumerableReturnsExpectedResultAfterVerifyWithoutToken()
             {
-                IEnumerable<object> messages = new[]
-                {
-                    new object(),
+                IEnumerable<object> messages = [
+	                new object(),
                     new object()
-                };
+                ];
 
                 var result = _sut.Given(messages).Verify(session => null).Messages;
 
@@ -254,19 +246,18 @@ namespace Projac.Tests.Testing
             public void SetUp()
             {
                 _resolver = Resolve.
-                    WhenEqualToHandlerMessageType(new ProjectionHandler<object>[0]);
-                _messages = new[] { new object(), new object() };
+                    WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<object>>());
+                _messages = [new object(), new object()];
                 _sut = new ProjectionScenario<object>(_resolver).Given(_messages);
             }
 
             [Test]
             public void GivenArrayReturnsExpectedResultAfterVerifyWithToken()
             {
-                object[] messages =
-                {
-                    new object(),
+                object[] messages = [
+	                new object(),
                     new object()
-                };
+                ];
 
                 var result = _sut.Given(messages).Verify((session, token) => null).Messages;
 
@@ -276,11 +267,10 @@ namespace Projac.Tests.Testing
             [Test]
             public void GivenArrayReturnsExpectedResultAfterVerifyWithoutToken()
             {
-                object[] messages =
-                {
-                    new object(),
+                object[] messages = [
+	                new object(),
                     new object()
-                };
+                ];
 
                 var result = _sut.Given(messages).Verify(session => null).Messages;
 
@@ -290,11 +280,10 @@ namespace Projac.Tests.Testing
             [Test]
             public void GivenEnumerableReturnsExpectedResultAfterVerifyWithToken()
             {
-                IEnumerable<object> messages = new[]
-                {
-                    new object(),
+                IEnumerable<object> messages = [
+	                new object(),
                     new object()
-                };
+                ];
 
                 var result = _sut.Given(messages).Verify((session, token) => null).Messages;
 
@@ -304,11 +293,10 @@ namespace Projac.Tests.Testing
             [Test]
             public void GivenEnumerableReturnsExpectedResultAfterVerifyWithoutToken()
             {
-                IEnumerable<object> messages = new[]
-                {
-                    new object(),
+                IEnumerable<object> messages = [
+	                new object(),
                     new object()
-                };
+                ];
 
                 var result = _sut.Given(messages).Verify(session => null).Messages;
 
@@ -321,7 +309,7 @@ namespace Projac.Tests.Testing
             public static ProjectionScenario<TConnection> Create<TConnection>()
             {
                 return new ProjectionScenario<TConnection>(
-                    Resolve.WhenEqualToHandlerMessageType(new ProjectionHandler<TConnection>[0]));
+                    Resolve.WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<TConnection>>()));
             }
 
             public static ProjectionScenario<TConnection> Create<TConnection>(ProjectionHandlerResolver<TConnection> resolver)

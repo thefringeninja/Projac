@@ -6,7 +6,7 @@ public class CallRecordingConnection
 
 	public CallRecordingConnection()
 	{
-		_calls = new List<Tuple<int, object, CancellationToken>>();
+		_calls = [];
 	}
 
 	public void RecordCall(int handler, object message, CancellationToken token)

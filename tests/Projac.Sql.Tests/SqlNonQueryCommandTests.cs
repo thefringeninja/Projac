@@ -42,22 +42,22 @@ public class SqlNonQueryCommandTests
 	[Test]
 	public void ParametersCanBeEmpty()
 	{
-		Assert.DoesNotThrow(() => SutFactory(new DbParameter[0]));
+		Assert.DoesNotThrow(() => SutFactory([]));
 	}
 
 	[Test]
 	public void PropertiesReturnExpectedValues()
 	{
-		var sut = SutFactory("text", new DbParameter[0], CommandType.TableDirect);
+		var sut = SutFactory("text", [], CommandType.TableDirect);
 
 		Assert.That(sut.Text, Is.EqualTo("text"));
-		Assert.That(sut.Parameters, Is.EqualTo(new DbParameter[0]));
+		Assert.That(sut.Parameters, Is.EqualTo(Array.Empty<DbParameter>()));
 		Assert.That(sut.Type, Is.EqualTo(CommandType.TableDirect));
 	}
 
 	private static SqlNonQueryCommand SutFactory(string text)
 	{
-		return SutFactory(text, new DbParameter[0], CommandType.Text);
+		return SutFactory(text, [], CommandType.Text);
 	}
 
 	private static SqlNonQueryCommand SutFactory(DbParameter[] parameters)
@@ -67,7 +67,7 @@ public class SqlNonQueryCommandTests
 
 	private static SqlNonQueryCommand SutFactory(CommandType type)
 	{
-		return SutFactory("text", new DbParameter[0], type);
+		return SutFactory("text", [], type);
 	}
 
 	private static SqlNonQueryCommand SutFactory(string text, DbParameter[] parameters, CommandType type)

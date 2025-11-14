@@ -12,7 +12,7 @@ public partial class SqlClientSyntax
 	/// <exception cref="System.ArgumentNullException">Thrown when the <paramref name="commands" /> are <c>null</c>.</exception>
 	public SqlNonQueryCommandComposer Compose(IEnumerable<SqlNonQueryCommand> commands)
 	{
-		if (commands == null) throw new ArgumentNullException("commands");
+		ArgumentNullException.ThrowIfNull(commands);
 		return new SqlNonQueryCommandComposer(commands.ToArray());
 	}
 
@@ -26,7 +26,7 @@ public partial class SqlClientSyntax
 	public SqlNonQueryCommandComposer ComposeIf(bool condition,
 		IEnumerable<SqlNonQueryCommand> commands)
 	{
-		return Compose(condition ? commands : new SqlNonQueryCommand[0]);
+		return Compose(condition ? commands : Array.Empty<SqlNonQueryCommand>());
 	}
 
 	/// <summary>
@@ -40,7 +40,7 @@ public partial class SqlClientSyntax
 	public SqlNonQueryCommandComposer ComposeUnless(bool condition,
 		IEnumerable<SqlNonQueryCommand> commands)
 	{
-		return Compose(!condition ? commands : new SqlNonQueryCommand[0]);
+		return Compose(!condition ? commands : Array.Empty<SqlNonQueryCommand>());
 	}
 
 	/// <summary>
@@ -51,7 +51,7 @@ public partial class SqlClientSyntax
 	/// <exception cref="System.ArgumentNullException">Thrown when the <paramref name="commands" /> are <c>null</c>.</exception>
 	public SqlNonQueryCommandComposer Compose(params SqlNonQueryCommand[] commands)
 	{
-		if (commands == null) throw new ArgumentNullException("commands");
+		ArgumentNullException.ThrowIfNull(commands);
 		return new SqlNonQueryCommandComposer(commands);
 	}
 
@@ -64,7 +64,7 @@ public partial class SqlClientSyntax
 	/// <exception cref="System.ArgumentNullException">Thrown when the <paramref name="commands" /> are <c>null</c>.</exception>
 	public SqlNonQueryCommandComposer ComposeIf(bool condition, params SqlNonQueryCommand[] commands)
 	{
-		return Compose(condition ? commands : new SqlNonQueryCommand[0]);
+		return Compose(condition ? commands : []);
 	}
 
 	/// <summary>
@@ -78,6 +78,6 @@ public partial class SqlClientSyntax
 	public SqlNonQueryCommandComposer ComposeUnless(bool condition,
 		params SqlNonQueryCommand[] commands)
 	{
-		return Compose(!condition ? commands : new SqlNonQueryCommand[0]);
+		return Compose(!condition ? commands : []);
 	}
 }

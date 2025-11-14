@@ -117,10 +117,10 @@ public class SqlNonQueryCommandComposerTests
 	{
 		var sut = SutFactory();
 		NUnit.Framework.Assert.That(sut.Compose(
-			(IEnumerable<SqlNonQueryCommand>)new[] {
+			(IEnumerable<SqlNonQueryCommand>) [
 				CommandFactory(),
 				CommandFactory()
-			}), Is.InstanceOf<SqlNonQueryCommandComposer>());
+			]), Is.InstanceOf<SqlNonQueryCommandComposer>());
 	}
 
 	[Test]
@@ -129,10 +129,10 @@ public class SqlNonQueryCommandComposerTests
 		var sut = SutFactory();
 		NUnit.Framework.Assert.That(sut.ComposeIf(
 			condition,
-			(IEnumerable<SqlNonQueryCommand>)new[] {
+			(IEnumerable<SqlNonQueryCommand>) [
 				CommandFactory(),
 				CommandFactory()
-			}), Is.InstanceOf<SqlNonQueryCommandComposer>());
+			]), Is.InstanceOf<SqlNonQueryCommandComposer>());
 	}
 
 	[Test]
@@ -141,10 +141,10 @@ public class SqlNonQueryCommandComposerTests
 		var sut = SutFactory();
 		NUnit.Framework.Assert.That(sut.ComposeUnless(
 			condition,
-			(IEnumerable<SqlNonQueryCommand>)new[] {
+			(IEnumerable<SqlNonQueryCommand>) [
 				CommandFactory(),
 				CommandFactory()
-			}), Is.InstanceOf<SqlNonQueryCommandComposer>());
+			]), Is.InstanceOf<SqlNonQueryCommandComposer>());
 	}
 
 	[Test]
@@ -160,10 +160,9 @@ public class SqlNonQueryCommandComposerTests
 
 		SqlNonQueryCommand[] result = sut.Compose(command3, command4);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2, command3, command4
-		}));
+		]));
 	}
 
 	[Test]
@@ -179,10 +178,9 @@ public class SqlNonQueryCommandComposerTests
 
 		SqlNonQueryCommand[] result = sut.ComposeIf(true, command3, command4);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2, command3, command4
-		}));
+		]));
 	}
 
 	[Test]
@@ -198,10 +196,9 @@ public class SqlNonQueryCommandComposerTests
 
 		SqlNonQueryCommand[] result = sut.ComposeIf(false, command3, command4);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2
-		}));
+		]));
 	}
 
 	[Test]
@@ -217,10 +214,9 @@ public class SqlNonQueryCommandComposerTests
 
 		SqlNonQueryCommand[] result = sut.ComposeUnless(false, command3, command4);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2, command3, command4
-		}));
+		]));
 	}
 
 	[Test]
@@ -236,10 +232,9 @@ public class SqlNonQueryCommandComposerTests
 
 		SqlNonQueryCommand[] result = sut.ComposeUnless(true, command3, command4);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2
-		}));
+		]));
 	}
 
 	[Test]
@@ -254,12 +249,11 @@ public class SqlNonQueryCommandComposerTests
 		var command4 = CommandFactory();
 
 		SqlNonQueryCommand[] result = sut.Compose(
-			(IEnumerable<SqlNonQueryCommand>)new[] { command3, command4 });
+			(IEnumerable<SqlNonQueryCommand>)[command3, command4]);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2, command3, command4
-		}));
+		]));
 	}
 
 	[Test]
@@ -275,12 +269,11 @@ public class SqlNonQueryCommandComposerTests
 
 		SqlNonQueryCommand[] result = sut.ComposeIf(
 			true,
-			(IEnumerable<SqlNonQueryCommand>)new[] { command3, command4 });
+			(IEnumerable<SqlNonQueryCommand>)[command3, command4]);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2, command3, command4
-		}));
+		]));
 	}
 
 	[Test]
@@ -296,12 +289,11 @@ public class SqlNonQueryCommandComposerTests
 
 		SqlNonQueryCommand[] result = sut.ComposeIf(
 			false,
-			(IEnumerable<SqlNonQueryCommand>)new[] { command3, command4 });
+			(IEnumerable<SqlNonQueryCommand>)[command3, command4]);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2
-		}));
+		]));
 	}
 
 	[Test]
@@ -317,12 +309,11 @@ public class SqlNonQueryCommandComposerTests
 
 		SqlNonQueryCommand[] result = sut.ComposeUnless(
 			false,
-			(IEnumerable<SqlNonQueryCommand>)new[] { command3, command4 });
+			(IEnumerable<SqlNonQueryCommand>)[command3, command4]);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2, command3, command4
-		}));
+		]));
 	}
 
 	[Test]
@@ -338,12 +329,11 @@ public class SqlNonQueryCommandComposerTests
 
 		SqlNonQueryCommand[] result = sut.ComposeUnless(
 			true,
-			(IEnumerable<SqlNonQueryCommand>)new[] { command3, command4 });
+			(IEnumerable<SqlNonQueryCommand>)[command3, command4]);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2
-		}));
+		]));
 	}
 
 	[Test]
@@ -352,12 +342,11 @@ public class SqlNonQueryCommandComposerTests
 		var command1 = CommandFactory();
 		var command2 = CommandFactory();
 
-		SqlNonQueryCommand[] result = new SqlNonQueryCommandComposer(new[] { command1, command2 });
+		SqlNonQueryCommand[] result = new SqlNonQueryCommandComposer([command1, command2]);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2
-		}));
+		]));
 	}
 
 	[Test]
@@ -368,10 +357,9 @@ public class SqlNonQueryCommandComposerTests
 
 		var result = (SqlNonQueryCommand[])SutFactory(command1, command2);
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			command1, command2
-		}));
+		]));
 	}
 
 	private static SqlNonQueryCommandComposer SutFactory(params SqlNonQueryCommand[] statements)
@@ -381,6 +369,6 @@ public class SqlNonQueryCommandComposerTests
 
 	private static SqlNonQueryCommand CommandFactory()
 	{
-		return new SqlNonQueryCommand("text", new DbParameter[0], CommandType.Text);
+		return new SqlNonQueryCommand("text", [], CommandType.Text);
 	}
 }

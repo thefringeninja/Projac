@@ -57,7 +57,7 @@ public partial class SqlClientSyntax
 	{
 		if (parameters == null || parameters.Length == 0)
 		{
-			return new SqlNonQueryCommand(format, new DbParameter[0], CommandType.Text);
+			return new SqlNonQueryCommand(format, [], CommandType.Text);
 		}
 		ThrowIfMaxParameterCountExceeded(parameters);
 		return new SqlNonQueryCommand(

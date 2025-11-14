@@ -18,8 +18,7 @@ public class AnonymousProjection<TConnection> : IEnumerable<ProjectionHandler<TC
 	/// </exception>
 	public AnonymousProjection(ProjectionHandler<TConnection>[] handlers)
 	{
-		if (handlers == null) 
-			throw new ArgumentNullException("handlers");
+		ArgumentNullException.ThrowIfNull(handlers);
 
 		_handlers = handlers;
 	}

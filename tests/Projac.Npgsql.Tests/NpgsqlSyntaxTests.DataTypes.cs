@@ -79,7 +79,7 @@ public partial class NpgsqlSyntaxTests
 	[Test]
 	public void BinaryReturnsExpectedInstance()
 	{
-		Assert.That(Sql.Binary(new byte[] { 1, 2, 3 }, 123), Is.EqualTo(new NpgsqlBinaryValue(new byte[] { 1, 2, 3 }, new NpgsqlBinarySize(123))));
+		Assert.That(Sql.Binary([1, 2, 3], 123), Is.EqualTo(new NpgsqlBinaryValue([1, 2, 3], new NpgsqlBinarySize(123))));
 	}
 
 	[Test]
@@ -91,7 +91,7 @@ public partial class NpgsqlSyntaxTests
 	[Test]
 	public void VarBinaryReturnsExpectedInstance()
 	{
-		Assert.That(Sql.VarBinary(new byte[] { 1, 2, 3 }, 123), Is.EqualTo(new NpgsqlVarBinaryValue(new byte[] { 1, 2, 3 }, new NpgsqlVarBinarySize(123))));
+		Assert.That(Sql.VarBinary([1, 2, 3], 123), Is.EqualTo(new NpgsqlVarBinaryValue([1, 2, 3], new NpgsqlVarBinarySize(123))));
 	}
 
 	[Test]
@@ -103,7 +103,7 @@ public partial class NpgsqlSyntaxTests
 	[Test]
 	public void VarBinaryMaxReturnsExpectedInstance()
 	{
-		Assert.That(Sql.VarBinaryMax(new byte[] { 1, 2, 3 }), Is.EqualTo(new NpgsqlVarBinaryValue(new byte[] { 1, 2, 3 }, NpgsqlVarBinarySize.Max)));
+		Assert.That(Sql.VarBinaryMax([1, 2, 3]), Is.EqualTo(new NpgsqlVarBinaryValue([1, 2, 3], NpgsqlVarBinarySize.Max)));
 	}
 
 	[Test]

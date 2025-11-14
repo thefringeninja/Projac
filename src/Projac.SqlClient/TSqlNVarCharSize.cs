@@ -19,9 +19,7 @@ public struct TSqlNVarCharSize : IEquatable<TSqlNVarCharSize>
 	/// <exception cref="System.ArgumentOutOfRangeException">value;The value must be between -1 and 4000.</exception>
 	public TSqlNVarCharSize(int value)
 	{
-		if (value < -1 || value > Limits.MaxUnicodeSize)
-			throw new ArgumentOutOfRangeException("value", value,
-				string.Format("The value must be between -1 and {0}.", Limits.MaxUnicodeSize));
+		ArgumentOutOfRangeException.ThrowIfLessThan(value, -1);
 		_value = value;
 	}
 

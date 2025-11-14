@@ -18,8 +18,8 @@ public class SqlProjector
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="resolver"/> or <paramref name="executor"/> is <c>null</c>.</exception>
 	public SqlProjector(SqlProjectionHandlerResolver resolver, ISqlNonQueryCommandExecutor executor)
 	{
-		if (resolver == null) throw new ArgumentNullException("resolver");
-		if (executor == null) throw new ArgumentNullException("executor");
+		ArgumentNullException.ThrowIfNull(resolver);
+		ArgumentNullException.ThrowIfNull(executor);
 
 		_resolver = resolver;
 		_executor = executor;
@@ -33,7 +33,7 @@ public class SqlProjector
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="message"/> is <c>null</c>.</exception>
 	public int Project(object message)
 	{
-		if (message == null) throw new ArgumentNullException("message");
+		ArgumentNullException.ThrowIfNull(message);
 
 		return _executor.
 			ExecuteNonQuery(
@@ -50,8 +50,7 @@ public class SqlProjector
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="messages"/> are <c>null</c>.</exception>
 	public int Project(IEnumerable<object> messages)
 	{
-		if (messages == null) 
-			throw new ArgumentNullException("messages");
+		ArgumentNullException.ThrowIfNull(messages);
 
 		return _executor.
 			ExecuteNonQuery(

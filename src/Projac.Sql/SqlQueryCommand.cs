@@ -24,12 +24,10 @@ public class SqlQueryCommand
 	/// </exception>
 	public SqlQueryCommand(string text, DbParameter[] parameters, CommandType type)
 	{
-		if (text == null)
-			throw new ArgumentNullException("text");
-		if (parameters == null)
-			throw new ArgumentNullException("parameters");
+		ArgumentNullException.ThrowIfNull(text);
+		ArgumentNullException.ThrowIfNull(parameters);
 		if (!Enum.IsDefined(typeof(CommandType), type))
-			throw new ArgumentException(string.Format("The command type value {0} is not supported.", type), "type");
+			throw new ArgumentException($"The command type value {type} is not supported.", nameof(type));
 		_text = text;
 		_parameters = parameters;
 		_type = type;

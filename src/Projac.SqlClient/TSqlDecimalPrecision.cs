@@ -29,11 +29,8 @@ public struct TSqlDecimalPrecision : IEquatable<TSqlDecimalPrecision>
 	/// <exception cref="System.ArgumentOutOfRangeException">Thrown if the value is not between 1 and 38.</exception>
 	public TSqlDecimalPrecision(byte value)
 	{
-		if (value < 1 || value > 38)
-		{
-			throw new ArgumentOutOfRangeException("value", value,
-				string.Format("The value must be between {0} and {1}.", 1, 38));
-		}
+		ArgumentOutOfRangeException.ThrowIfLessThan(value, 1);
+		ArgumentOutOfRangeException.ThrowIfGreaterThan(value, 38);
 
 		_value = value;
 	}

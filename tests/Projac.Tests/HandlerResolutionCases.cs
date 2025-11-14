@@ -34,15 +34,13 @@ public class HandlerResolutionCases
 		var handler10 = HandlerFor<Envelope<Message1>>();
 		yield return new TestCaseData(
 			new[] { handler10 },
-			new MessageEnvelope<Message1>(),
-			new ProjectionHandler<object>[0]).SetDescription("Envelope with derived type resolution");
+			new MessageEnvelope<Message1>(), Array.Empty<ProjectionHandler<object>>()).SetDescription("Envelope with derived type resolution");
 
 		//No match resolution
 		var handler11 = HandlerFor<OtherMessage>();
 		yield return new TestCaseData(
 			new[] { handler11 },
-			new Message1(),
-			new ProjectionHandler<object>[0]).SetDescription("No match resolution");
+			new Message1(), Array.Empty<ProjectionHandler<object>>()).SetDescription("No match resolution");
 
 		// * Handler order */
 
@@ -176,22 +174,19 @@ public class HandlerResolutionCases
 		var handler15 = HandlerFor<Envelope<IConvertible>>();
 		yield return new TestCaseData(
 			new[] { handler15 },
-			new MessageEnvelope<Int32>(),
-			new ProjectionHandler<object>[0]).SetDescription("Envelope with value type's interface resolution");
+			new MessageEnvelope<Int32>(), Array.Empty<ProjectionHandler<object>>()).SetDescription("Envelope with value type's interface resolution");
 
 		//Envelope and message interface type resolution
 		var handler30 = HandlerFor<Envelope<OtherMessage>>();
 		yield return new TestCaseData(
 			new[] { handler30 },
-			new MessageEnvelope<Message1>(),
-			new ProjectionHandler<object>[0]).SetDescription("Envelope and message interface type resolution");
+			new MessageEnvelope<Message1>(), Array.Empty<ProjectionHandler<object>>()).SetDescription("Envelope and message interface type resolution");
 
 		//Concrete envelope with message base type resolution
 		var handler31 = HandlerFor<MessageEnvelope<IMessage>>();
 		yield return new TestCaseData(
 			new[] { handler31 },
-			new MessageEnvelope<Message1>(),
-			new ProjectionHandler<object>[0]).SetDescription("Concrete envelope with message base type resolution");
+			new MessageEnvelope<Message1>(), Array.Empty<ProjectionHandler<object>>()).SetDescription("Concrete envelope with message base type resolution");
 
 		// * Handler order */
 

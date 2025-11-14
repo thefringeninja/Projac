@@ -17,7 +17,7 @@ public class ProjectionHandlerEnumeratorTests
 	public void DisposeDoesNotThrow()
 	{
 		Assert.DoesNotThrow(() =>
-			new ProjectionHandlerEnumerator<object>(new ProjectionHandler<object>[0]));
+			new ProjectionHandlerEnumerator<object>([]));
 	}
 
 	[TestCaseSource("MoveNextCases")]
@@ -31,25 +31,23 @@ public class ProjectionHandlerEnumeratorTests
 	private static IEnumerable<TestCaseData> MoveNextCases()
 	{
 		//No handlers
-		var enumerator1 = new ProjectionHandlerEnumerator<object>(new ProjectionHandler<object>[0]);
+		var enumerator1 = new ProjectionHandlerEnumerator<object>([]);
 		yield return new TestCaseData(enumerator1, false);
 		yield return new TestCaseData(enumerator1, false); //idempotency check
 
 		//1 handler
-		var enumerator2 = new ProjectionHandlerEnumerator<object>(new[]
-		{
+		var enumerator2 = new ProjectionHandlerEnumerator<object>([
 			HandlerFactory(TaskFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator2, true);
 		yield return new TestCaseData(enumerator2, false);
 		yield return new TestCaseData(enumerator2, false); //idempotency check
 
 		//2 handlers
-		var enumerator3 = new ProjectionHandlerEnumerator<object>(new[]
-		{
+		var enumerator3 = new ProjectionHandlerEnumerator<object>([
 			HandlerFactory(TaskFactory()),
 			HandlerFactory(TaskFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator3, true);
 		yield return new TestCaseData(enumerator3, true);
 		yield return new TestCaseData(enumerator3, false);
@@ -70,24 +68,22 @@ public class ProjectionHandlerEnumeratorTests
 	private static IEnumerable<TestCaseData> MoveNextAfterResetCases()
 	{
 		//No handlers
-		var enumerator1 = new ProjectionHandlerEnumerator<object>(new ProjectionHandler<object>[0]);
+		var enumerator1 = new ProjectionHandlerEnumerator<object>([]);
 		yield return new TestCaseData(enumerator1, false);
 		yield return new TestCaseData(enumerator1, false);
 
 		//1 handler
-		var enumerator2 = new ProjectionHandlerEnumerator<object>(new[]
-		{
+		var enumerator2 = new ProjectionHandlerEnumerator<object>([
 			HandlerFactory(TaskFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator2, true);
 		yield return new TestCaseData(enumerator2, true);
 
 		//2 handlers
-		var enumerator3 = new ProjectionHandlerEnumerator<object>(new[]
-		{
+		var enumerator3 = new ProjectionHandlerEnumerator<object>([
 			HandlerFactory(TaskFactory()),
 			HandlerFactory(TaskFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator3, true);
 		yield return new TestCaseData(enumerator3, true);
 	}
@@ -101,22 +97,20 @@ public class ProjectionHandlerEnumeratorTests
 	private static IEnumerable<TestCaseData> ResetCases()
 	{
 		//No handlers
-		var enumerator1 = new ProjectionHandlerEnumerator<object>(new ProjectionHandler<object>[0]);
+		var enumerator1 = new ProjectionHandlerEnumerator<object>([]);
 		yield return new TestCaseData(enumerator1);
 
 		//1 handler
-		var enumerator2 = new ProjectionHandlerEnumerator<object>(new[]
-		{
+		var enumerator2 = new ProjectionHandlerEnumerator<object>([
 			HandlerFactory(TaskFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator2);
 
 		//2 handlers
-		var enumerator3 = new ProjectionHandlerEnumerator<object>(new[]
-		{
+		var enumerator3 = new ProjectionHandlerEnumerator<object>([
 			HandlerFactory(TaskFactory()),
 			HandlerFactory(TaskFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator3);
 	}
 
@@ -139,22 +133,20 @@ public class ProjectionHandlerEnumeratorTests
 	private static IEnumerable<TestCaseData> CurrentNotStartedCases()
 	{
 		//No handlers
-		var enumerator1 = new ProjectionHandlerEnumerator<object>(new ProjectionHandler<object>[0]);
+		var enumerator1 = new ProjectionHandlerEnumerator<object>([]);
 		yield return new TestCaseData(enumerator1);
 
 		//1 handler
-		var enumerator2 = new ProjectionHandlerEnumerator<object>(new[]
-		{
+		var enumerator2 = new ProjectionHandlerEnumerator<object>([
 			HandlerFactory(TaskFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator2);
 
 		//2 handlers
-		var enumerator3 = new ProjectionHandlerEnumerator<object>(new[]
-		{
+		var enumerator3 = new ProjectionHandlerEnumerator<object>([
 			HandlerFactory(TaskFactory()),
 			HandlerFactory(TaskFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator3);
 	}
 
@@ -177,24 +169,22 @@ public class ProjectionHandlerEnumeratorTests
 	private static IEnumerable<TestCaseData> CurrentCompletedCases()
 	{
 		//No handlers
-		var enumerator1 = new ProjectionHandlerEnumerator<object>(new ProjectionHandler<object>[0]);
+		var enumerator1 = new ProjectionHandlerEnumerator<object>([]);
 		while (enumerator1.MoveNext()) { }
 		yield return new TestCaseData(enumerator1);
 
 		//1 handler
-		var enumerator2 = new ProjectionHandlerEnumerator<object>(new[]
-		{
+		var enumerator2 = new ProjectionHandlerEnumerator<object>([
 			HandlerFactory(TaskFactory())
-		});
+		]);
 		while (enumerator2.MoveNext()) { }
 		yield return new TestCaseData(enumerator2);
 
 		//2 handlers
-		var enumerator3 = new ProjectionHandlerEnumerator<object>(new[]
-		{
+		var enumerator3 = new ProjectionHandlerEnumerator<object>([
 			HandlerFactory(TaskFactory()),
 			HandlerFactory(TaskFactory())
-		});
+		]);
 		while (enumerator3.MoveNext()) { }
 		yield return new TestCaseData(enumerator3);
 	}
@@ -227,20 +217,18 @@ public class ProjectionHandlerEnumeratorTests
 
 		//1 handler
 		var task1 = TaskFactory();
-		var enumerator2 = new ProjectionHandlerEnumerator<object>(new[]
-		{
+		var enumerator2 = new ProjectionHandlerEnumerator<object>([
 			HandlerFactory(task1)
-		});
+		]);
 		yield return new TestCaseData(enumerator2, task1);
 
 		//2 handlers
 		var task2 = TaskFactory();
 		var task3 = TaskFactory();
-		var enumerator3 = new ProjectionHandlerEnumerator<object>(new[]
-		{
+		var enumerator3 = new ProjectionHandlerEnumerator<object>([
 			HandlerFactory(task2),
 			HandlerFactory(task3)
-		});
+		]);
 		yield return new TestCaseData(enumerator3, task2);
 		yield return new TestCaseData(enumerator3, task3);
 	}

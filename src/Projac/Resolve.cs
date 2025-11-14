@@ -12,19 +12,17 @@ public static class Resolve
 	/// <returns>A <see cref="ProjectionHandlerResolver{TConnection}">resolver</see>.</returns>
 	public static ProjectionHandlerResolver<TConnection> WhenEqualToHandlerMessageType<TConnection>(ProjectionHandler<TConnection>[] handlers)
 	{
-		if (handlers == null) 
-			throw new ArgumentNullException("handlers");
+		ArgumentNullException.ThrowIfNull(handlers);
 		var cache = handlers.
 			GroupBy(handler => handler.Message).
 			ToDictionary(@group => @group.Key, @group => @group.ToArray());
 		return message =>
 		{
-			if(message == null)
-				throw new ArgumentNullException("message");
+			ArgumentNullException.ThrowIfNull(message);
 			ProjectionHandler<TConnection>[] result;
 			return cache.TryGetValue(message.GetType(), out result) ? 
 				result :
-				new ProjectionHandler<TConnection>[0];
+				[];
 		};
 	}
 
@@ -35,13 +33,11 @@ public static class Resolve
 	/// <returns>A <see cref="ProjectionHandlerResolver{TConnection}">resolver</see>.</returns>
 	public static ProjectionHandlerResolver<TConnection> WhenAssignableToHandlerMessageType<TConnection>(ProjectionHandler<TConnection>[] handlers)
 	{
-		if (handlers == null)
-			throw new ArgumentNullException("handlers");
+		ArgumentNullException.ThrowIfNull(handlers);
 		var cache = new Dictionary<Type, ProjectionHandler<TConnection>[]>();
 		return message =>
 		{
-			if (message == null)
-				throw new ArgumentNullException("message");
+			ArgumentNullException.ThrowIfNull(message);
 			ProjectionHandler<TConnection>[] result;
 			if (!cache.TryGetValue(message.GetType(), out result))
 			{

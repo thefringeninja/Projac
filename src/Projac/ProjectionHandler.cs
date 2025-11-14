@@ -19,8 +19,8 @@ public class ProjectionHandler<TConnection>
 	/// </exception>
 	public ProjectionHandler(Type message, Func<TConnection, object, CancellationToken, Task> handler)
 	{
-		if (message == null) throw new ArgumentNullException("message");
-		if (handler == null) throw new ArgumentNullException("handler");
+		ArgumentNullException.ThrowIfNull(message);
+		ArgumentNullException.ThrowIfNull(handler);
 		_message = message;
 		_handler = handler;
 	}

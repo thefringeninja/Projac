@@ -36,8 +36,7 @@ public struct VerificationResult : IEquatable<VerificationResult>
 	/// <returns>A passed <see cref="VerificationResult"/>.</returns>
 	public static VerificationResult Pass(string message = "")
 	{
-		if (message == null) 
-			throw new ArgumentNullException("message");
+		ArgumentNullException.ThrowIfNull(message);
 
 		return new VerificationResult(VerificationResultState.Passed, message);
 	}
@@ -49,9 +48,8 @@ public struct VerificationResult : IEquatable<VerificationResult>
 	/// <returns>A failed <see cref="VerificationResult"/>.</returns>
 	public static VerificationResult Fail(string message = "")
 	{
-		if (message == null) 
-			throw new ArgumentNullException("message");
-            
+		ArgumentNullException.ThrowIfNull(message);
+
 		return new VerificationResult(VerificationResultState.Failed, message);
 	}
 

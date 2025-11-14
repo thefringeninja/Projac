@@ -14,7 +14,7 @@ public abstract class SqlProjection : IEnumerable<SqlProjectionHandler>
 	/// </summary>
 	protected SqlProjection()
 	{
-		_handlers = new List<SqlProjectionHandler>();
+		_handlers = [];
 	}
 
 	/// <summary>
@@ -25,8 +25,8 @@ public abstract class SqlProjection : IEnumerable<SqlProjectionHandler>
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="handler" /> is <c>null</c>.</exception>
 	protected void When<TMessage>(Func<TMessage, SqlNonQueryCommand> handler)
 	{
-		if (handler == null) throw new ArgumentNullException("handler");
-		_handlers.Add(new SqlProjectionHandler(typeof (TMessage), message => new[] {handler((TMessage) message)}));
+		ArgumentNullException.ThrowIfNull(handler);
+		_handlers.Add(new SqlProjectionHandler(typeof (TMessage), message => [handler((TMessage) message)]));
 	}
 
 	/// <summary>
@@ -37,7 +37,7 @@ public abstract class SqlProjection : IEnumerable<SqlProjectionHandler>
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="handler" /> is <c>null</c>.</exception>
 	protected void When<TMessage>(Func<TMessage, SqlNonQueryCommand[]> handler)
 	{
-		if (handler == null) throw new ArgumentNullException("handler");
+		ArgumentNullException.ThrowIfNull(handler);
 		_handlers.Add(new SqlProjectionHandler(typeof (TMessage), message => handler((TMessage) message)));
 	}
 
@@ -49,7 +49,7 @@ public abstract class SqlProjection : IEnumerable<SqlProjectionHandler>
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="handler" /> is <c>null</c>.</exception>
 	protected void When<TMessage>(Func<TMessage, IEnumerable<SqlNonQueryCommand>> handler)
 	{
-		if (handler == null) throw new ArgumentNullException("handler");
+		ArgumentNullException.ThrowIfNull(handler);
 		_handlers.Add(new SqlProjectionHandler(typeof(TMessage), message => handler((TMessage)message)));
 	}
 

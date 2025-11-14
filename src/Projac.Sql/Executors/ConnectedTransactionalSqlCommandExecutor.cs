@@ -20,7 +20,7 @@ public class ConnectedTransactionalSqlCommandExecutor :
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="dbTransaction" /> is <c>null</c>.</exception>
 	public ConnectedTransactionalSqlCommandExecutor(DbTransaction dbTransaction, int commandTimeout = 30)
 	{
-		if (dbTransaction == null) throw new ArgumentNullException("dbTransaction");
+		ArgumentNullException.ThrowIfNull(dbTransaction);
 		_dbTransaction = dbTransaction;
 		_commandTimeout = commandTimeout;
 	}
@@ -33,8 +33,7 @@ public class ConnectedTransactionalSqlCommandExecutor :
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="command" /> is <c>null</c>.</exception>
 	public void ExecuteNonQuery(SqlNonQueryCommand command)
 	{
-		if (command == null) 
-			throw new ArgumentNullException("command");
+		ArgumentNullException.ThrowIfNull(command);
 
 		using (var dbCommand = _dbTransaction.Connection.CreateCommand())
 		{
@@ -58,8 +57,7 @@ public class ConnectedTransactionalSqlCommandExecutor :
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="commands" /> are <c>null</c>.</exception>
 	public int ExecuteNonQuery(IEnumerable<SqlNonQueryCommand> commands)
 	{
-		if (commands == null) 
-			throw new ArgumentNullException("commands");
+		ArgumentNullException.ThrowIfNull(commands);
 
 		var count = 0;
 		using (var dbCommand = _dbTransaction.Connection.CreateCommand())
@@ -107,8 +105,7 @@ public class ConnectedTransactionalSqlCommandExecutor :
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="commands" /> are <c>null</c>.</exception>
 	public async Task<int> ExecuteNonQueryAsync(IEnumerable<SqlNonQueryCommand> commands, CancellationToken cancellationToken)
 	{
-		if (commands == null) 
-			throw new ArgumentNullException("commands");
+		ArgumentNullException.ThrowIfNull(commands);
 
 		var count = 0;
 		using (var dbCommand = _dbTransaction.Connection.CreateCommand())
@@ -156,8 +153,7 @@ public class ConnectedTransactionalSqlCommandExecutor :
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="command" /> is <c>null</c>.</exception>
 	public async Task ExecuteNonQueryAsync(SqlNonQueryCommand command, CancellationToken cancellationToken)
 	{
-		if (command == null)
-			throw new ArgumentNullException("command");
+		ArgumentNullException.ThrowIfNull(command);
 
 		using (var dbCommand = _dbTransaction.Connection.CreateCommand())
 		{

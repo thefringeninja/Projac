@@ -20,7 +20,7 @@ namespace Projac.Tests
             [SetUp]
             public void SetUp()
             {
-                _sut = new Any(new ProjectionHandler<object>[0]);
+                _sut = new Any([]);
             }
 
             [Test]
@@ -43,7 +43,7 @@ namespace Projac.Tests
             class WithoutHandlers : AnonymousProjection<object>
             {
                 public WithoutHandlers()
-                    : base(new ProjectionHandler<object>[0])
+                    : base([])
                 {
                 }
             }
@@ -116,13 +116,12 @@ namespace Projac.Tests
             {
                 _task1 = TaskFactory();
                 _task2 = TaskFactory();
-                _result = new [] {_task1, _task2};
+                _result = [_task1, _task2];
 
-                _sut = new WithHandlers(new[]
-                {
-                    HandlerFactory(_task1),
-                    HandlerFactory(_task2),
-                });
+                _sut = new WithHandlers([
+	                HandlerFactory(_task1),
+                    HandlerFactory(_task2)
+                ]);
             }
 
             [Test]

@@ -53,7 +53,7 @@ public partial class SqlClientSyntax
 	{
 		if (parameters == null || parameters.Length == 0)
 		{
-			return new SqlQueryCommand(format, new DbParameter[0], CommandType.Text);
+			return new SqlQueryCommand(format, [], CommandType.Text);
 		}
 		ThrowIfMaxParameterCountExceeded(parameters);
 		return new SqlQueryCommand(

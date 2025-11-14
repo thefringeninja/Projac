@@ -12,7 +12,7 @@ public class ProjectionTestSpecificationTests
 		Assert.Throws<ArgumentNullException>(() =>
 			new ProjectionTestSpecification<object>(
 				null,
-				new object[0],
+				[],
 				(session, token) => Task.FromResult(VerificationResult.Pass()))
 		);
 	}
@@ -20,10 +20,10 @@ public class ProjectionTestSpecificationTests
 	[Test]
 	public void ResolverReturnsExpectedResult()
 	{
-		var resolver = Resolve.WhenEqualToHandlerMessageType(new ProjectionHandler<object>[0]);
+		var resolver = Resolve.WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<object>>());
 		var sut = new ProjectionTestSpecification<object>(
 			resolver,
-			new object[0],
+			[],
 			(session, token) => Task.FromResult(VerificationResult.Pass()));
 
 		var result = sut.Resolver;
@@ -36,7 +36,7 @@ public class ProjectionTestSpecificationTests
 	{
 		Assert.Throws<ArgumentNullException>(() =>
 			new ProjectionTestSpecification<object>(
-				Resolve.WhenEqualToHandlerMessageType(new ProjectionHandler<object>[0]),
+				Resolve.WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<object>>()),
 				null,
 				(session, token) => Task.FromResult(VerificationResult.Pass()))
 		);
@@ -47,7 +47,7 @@ public class ProjectionTestSpecificationTests
 	{
 		var messages = new [] {new object(), new object() };
 		var sut = new ProjectionTestSpecification<object>(
-			Resolve.WhenEqualToHandlerMessageType(new ProjectionHandler<object>[0]),
+			Resolve.WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<object>>()),
 			messages,
 			(session, token) => Task.FromResult(VerificationResult.Pass()));
 
@@ -61,8 +61,8 @@ public class ProjectionTestSpecificationTests
 	{
 		Assert.Throws<ArgumentNullException>(() =>
 			new ProjectionTestSpecification<object>(
-				Resolve.WhenEqualToHandlerMessageType(new ProjectionHandler<object>[0]),
-				new object[0],
+				Resolve.WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<object>>()),
+				[],
 				null)
 		);
 	}
@@ -73,8 +73,8 @@ public class ProjectionTestSpecificationTests
 		Func<object, CancellationToken, Task<VerificationResult>> verification = 
 			(session, token) => Task.FromResult(VerificationResult.Pass());
 		var sut = new ProjectionTestSpecification<object>(
-			Resolve.WhenEqualToHandlerMessageType(new ProjectionHandler<object>[0]),
-			new object[0],
+			Resolve.WhenEqualToHandlerMessageType(Array.Empty<ProjectionHandler<object>>()),
+			[],
 			verification);
 
 		var result = sut.Verification;

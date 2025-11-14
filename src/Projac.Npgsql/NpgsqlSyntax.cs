@@ -12,7 +12,7 @@ public partial class NpgsqlSyntax
 	private static DbParameter[] CollectFromAnonymousType(object parameters)
 	{
 		if (parameters == null)
-			return new DbParameter[0];
+			return [];
 		return ThrowIfMaxParameterCountExceeded(
 			parameters.
 				GetType().
@@ -26,10 +26,7 @@ public partial class NpgsqlSyntax
 
 	private static DbParameter[] ThrowIfMaxParameterCountExceeded(DbParameter[] parameters)
 	{
-		if (parameters.Length > Limits.MaxParameterCount)
-			throw new ArgumentException(
-				string.Format("The parameter count is limited to {0}.", Limits.MaxParameterCount),
-				"parameters");
+		ArgumentOutOfRangeException.ThrowIfGreaterThan(parameters.Length, Limits.MaxParameterCount);
 		return parameters;
 	}
 
@@ -37,10 +34,7 @@ public partial class NpgsqlSyntax
 	private static void ThrowIfMaxParameterCountExceeded(IDbParameterValue[] parameters)
 		// ReSharper restore UnusedParameter.Local
 	{
-		if (parameters.Length > Limits.MaxParameterCount)
-			throw new ArgumentException(
-				string.Format("The parameter count is limited to {0}.", Limits.MaxParameterCount),
-				"parameters");
+		ArgumentOutOfRangeException.ThrowIfGreaterThan(parameters.Length, Limits.MaxParameterCount);
 	}
 
 	private static string FormatDbParameterName(string name)

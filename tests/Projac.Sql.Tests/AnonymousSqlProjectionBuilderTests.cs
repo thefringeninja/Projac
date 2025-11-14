@@ -25,20 +25,18 @@ public class AnonymousSqlProjectionBuilderTests
 	[Test]
 	public void HandlersAreCopiedOnConstruction()
 	{
-		var handler1 = new SqlProjectionHandler(typeof(object), o => new SqlNonQueryCommand[0]);
-		var handler2 = new SqlProjectionHandler(typeof(object), o => new SqlNonQueryCommand[0]);
-		var sut = new AnonymousSqlProjectionBuilder(new[]
-		{
+		var handler1 = new SqlProjectionHandler(typeof(object), o => Array.Empty<SqlNonQueryCommand>());
+		var handler2 = new SqlProjectionHandler(typeof(object), o => Array.Empty<SqlNonQueryCommand>());
+		var sut = new AnonymousSqlProjectionBuilder([
 			handler1, 
 			handler2
-		});
+		]);
 
 		var result = sut.Build();
 
-		Assert.That(result, Is.EquivalentTo(new[]
-		{
+		Assert.That(result, Is.EquivalentTo([
 			handler1, handler2
-		}));
+		]));
 
 	}
 
@@ -81,7 +79,7 @@ public class AnonymousSqlProjectionBuilderTests
 		var result = _sut.When(handler).Build();
 
 		Assert.That(
-			result.Count(_ => _.Message == typeof(object) && _.Handler(null).SequenceEqual(new[] { command })),
+			result.Count(_ => _.Message == typeof(object) && _.Handler(null).SequenceEqual([command])),
 			Is.EqualTo(1));
 	}
 
@@ -111,7 +109,7 @@ public class AnonymousSqlProjectionBuilderTests
 	[Test]
 	public void WhenHandlerWithCommandArrayReturnsExpectedResult()
 	{
-		var result = _sut.When((object _) => new[] { CommandFactory(), CommandFactory() });
+		var result = _sut.When((object _) => [CommandFactory(), CommandFactory()]);
 
 		Assert.That(result, Is.InstanceOf<AnonymousSqlProjectionBuilder>());
 	}
@@ -121,11 +119,11 @@ public class AnonymousSqlProjectionBuilderTests
 	{
 		var command1 = CommandFactory();
 		var command2 = CommandFactory();
-		Func<object, SqlNonQueryCommand[]> handler = _ => new[] { command1, command2 };
+		Func<object, SqlNonQueryCommand[]> handler = _ => [command1, command2];
 		var result = _sut.When(handler).Build();
 
 		Assert.That(
-			result.Count(_ => _.Message == typeof(object) && _.Handler(null).SequenceEqual(new[] { command1, command2 })),
+			result.Count(_ => _.Message == typeof(object) && _.Handler(null).SequenceEqual([command1, command2])),
 			Is.EqualTo(1));
 	}
 
@@ -139,7 +137,7 @@ public class AnonymousSqlProjectionBuilderTests
 		};
 		var command1 = CommandFactory();
 		var command2 = CommandFactory();
-		Func<object, SqlNonQueryCommand[]> handler = _ => new[] { command1, command2 };
+		Func<object, SqlNonQueryCommand[]> handler = _ => [command1, command2];
 		var result = _sut.When((object _) => commands).When(handler).Build();
 
 		Assert.That(
@@ -156,10 +154,9 @@ public class AnonymousSqlProjectionBuilderTests
 	[Test]
 	public void WhenHandlerWithCommandEnumerationReturnsExpectedResult()
 	{
-		var result = _sut.When((object _) => (IEnumerable<SqlNonQueryCommand>)new[]
-		{
+		var result = _sut.When((object _) => (IEnumerable<SqlNonQueryCommand>) [
 			CommandFactory(), CommandFactory()
-		});
+		]);
 
 		Assert.That(result, Is.InstanceOf<AnonymousSqlProjectionBuilder>());
 	}
@@ -169,14 +166,13 @@ public class AnonymousSqlProjectionBuilderTests
 	{
 		var command1 = CommandFactory();
 		var command2 = CommandFactory();
-		Func<object, IEnumerable<SqlNonQueryCommand>> handler = _ => (IEnumerable<SqlNonQueryCommand>)new[]
-		{
+		Func<object, IEnumerable<SqlNonQueryCommand>> handler = _ => (IEnumerable<SqlNonQueryCommand>) [
 			command1, command2
-		};
+		];
 		var result = _sut.When(handler).Build();
 
 		Assert.That(
-			result.Count(_ => _.Message == typeof(object) && _.Handler(null).SequenceEqual(new[] { command1, command2 })),
+			result.Count(_ => _.Message == typeof(object) && _.Handler(null).SequenceEqual([command1, command2])),
 			Is.EqualTo(1));
 	}
 
@@ -190,10 +186,9 @@ public class AnonymousSqlProjectionBuilderTests
 		};
 		var command1 = CommandFactory();
 		var command2 = CommandFactory();
-		Func<object, IEnumerable<SqlNonQueryCommand>> handler = _ => (IEnumerable<SqlNonQueryCommand>)new[]
-		{
+		Func<object, IEnumerable<SqlNonQueryCommand>> handler = _ => (IEnumerable<SqlNonQueryCommand>) [
 			command1, command2
-		};
+		];
 		var result = _sut.When((object _) => commands).When(handler).Build();
 
 		Assert.That(
@@ -203,6 +198,6 @@ public class AnonymousSqlProjectionBuilderTests
 
 	private static SqlNonQueryCommand CommandFactory()
 	{
-		return new SqlNonQueryCommandStub("text", new DbParameter[0], CommandType.Text);
+		return new SqlNonQueryCommandStub("text", [], CommandType.Text);
 	}
 }

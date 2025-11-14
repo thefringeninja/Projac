@@ -19,8 +19,8 @@ public class SqlProjectionHandler
 	/// </exception>
 	public SqlProjectionHandler(Type message, Func<object, IEnumerable<SqlNonQueryCommand>> handler)
 	{
-		if (message == null) throw new ArgumentNullException("message");
-		if (handler == null) throw new ArgumentNullException("handler");
+		ArgumentNullException.ThrowIfNull(message);
+		ArgumentNullException.ThrowIfNull(handler);
 		_message = message;
 		_handler = handler;
 	}

@@ -44,7 +44,7 @@ public class ProjectorTests
 	public void ProjectAsyncMany_ConnectionCanBeNull()
 	{
 		var sut = SutFactory();
-		Assert.DoesNotThrow(() => sut.ProjectAsync((object)null, new object[0]));
+		Assert.DoesNotThrow(() => sut.ProjectAsync((object)null, Array.Empty<object>()));
 	}
 
 	[Test]
@@ -58,7 +58,7 @@ public class ProjectorTests
 	public void ProjectAsyncManyToken_ConnectionCanBeNull()
 	{
 		var sut = SutFactory();
-		Assert.DoesNotThrow(() => sut.ProjectAsync((object)null, new object[0], CancellationToken.None));
+		Assert.DoesNotThrow(() => sut.ProjectAsync((object)null, Array.Empty<object>(), CancellationToken.None));
 	}
 
 	[Test]
@@ -162,7 +162,7 @@ public class ProjectorTests
 		};
 		var sut = SutFactory(resolver);
 		Assert.That(async () =>
-				await sut.ProjectAsync(new object(), new[] { new object(), new object() }),
+				await sut.ProjectAsync(new object(), [new object(), new object()]),
 			Throws.TypeOf<Exception>().And.Message.EqualTo("message"));
 	}
 
@@ -175,7 +175,7 @@ public class ProjectorTests
 		};
 		var sut = SutFactory(resolver);
 		Assert.That(async () =>
-				await sut.ProjectAsync(new object(), new[] { new object(), new object() }, new CancellationToken()),
+				await sut.ProjectAsync(new object(), [new object(), new object()], new CancellationToken()),
 			Throws.TypeOf<Exception>().And.Message.EqualTo("message"));
 	}
 
@@ -189,7 +189,7 @@ public class ProjectorTests
 				source.SetException(new Exception("message"));
 				return source.Task;
 			};
-		ProjectionHandlerResolver<object> resolver = m => new[] {new ProjectionHandler<object>(typeof (object), handler)};
+		ProjectionHandlerResolver<object> resolver = m => [new ProjectionHandler<object>(typeof (object), handler)];
 		var sut = SutFactory(resolver);
 
 		Assert.That(async () =>
@@ -209,11 +209,10 @@ public class ProjectorTests
 				source.SetException(new Exception("message"));
 				return source.Task;
 			};
-		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType(new[]
-		{
+		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType([
 			new ProjectionHandler<object>(typeof(object), handler1),
 			new ProjectionHandler<object>(typeof(int), handler2)
-		});
+		]);
 		var sut = SutFactory(resolver);
 
 		Assert.That(async () =>
@@ -233,11 +232,10 @@ public class ProjectorTests
 				source.SetCanceled();
 				return source.Task;
 			};
-		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType(new[]
-		{
+		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType([
 			new ProjectionHandler<object>(typeof(object), handler1),
 			new ProjectionHandler<object>(typeof(int), handler2)
-		});
+		]);
 		var sut = SutFactory(resolver);
 
 		Assert.That(async () =>
@@ -255,7 +253,7 @@ public class ProjectorTests
 				source.SetException(new Exception("message"));
 				return source.Task;
 			};
-		ProjectionHandlerResolver<object> resolver = m => new[] { new ProjectionHandler<object>(typeof(object), handler) };
+		ProjectionHandlerResolver<object> resolver = m => [new ProjectionHandler<object>(typeof(object), handler)];
 		var sut = SutFactory(resolver);
 
 		Assert.That(async () =>
@@ -275,11 +273,10 @@ public class ProjectorTests
 				source.SetException(new Exception("message"));
 				return source.Task;
 			};
-		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType(new[]
-		{
+		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType([
 			new ProjectionHandler<object>(typeof(object), handler1),
 			new ProjectionHandler<object>(typeof(int), handler2)
-		});
+		]);
 		var sut = SutFactory(resolver);
 
 		Assert.That(async () =>
@@ -299,11 +296,10 @@ public class ProjectorTests
 				source.SetCanceled();
 				return source.Task;
 			};
-		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType(new[]
-		{
+		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType([
 			new ProjectionHandler<object>(typeof(object), handler1),
 			new ProjectionHandler<object>(typeof(int), handler2)
-		});
+		]);
 		var sut = SutFactory(resolver);
 
 		Assert.That(async () =>
@@ -322,11 +318,11 @@ public class ProjectorTests
 				source.SetException(new Exception("message"));
 				return source.Task;
 			};
-		ProjectionHandlerResolver<object> resolver = m => new[] { new ProjectionHandler<object>(typeof(object), handler) };
+		ProjectionHandlerResolver<object> resolver = m => [new ProjectionHandler<object>(typeof(object), handler)];
 		var sut = SutFactory(resolver);
 
 		Assert.That(async () =>
-				await sut.ProjectAsync(new object(), new[] { new object(), new object() }),
+				await sut.ProjectAsync(new object(), [new object(), new object()]),
 			Throws.TypeOf<Exception>().And.Message.EqualTo("message"));
 	}
 
@@ -342,15 +338,14 @@ public class ProjectorTests
 				source.SetException(new Exception("message"));
 				return source.Task;
 			};
-		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType(new[]
-		{
+		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType([
 			new ProjectionHandler<object>(typeof(object), handler1),
 			new ProjectionHandler<object>(typeof(int), handler2)
-		});
+		]);
 		var sut = SutFactory(resolver);
 
 		Assert.That(async () =>
-				await sut.ProjectAsync(new object(), new[] { new object(), new int() }),
+				await sut.ProjectAsync(new object(), [new object(), new int()]),
 			Throws.TypeOf<Exception>().And.Message.EqualTo("message"));
 	}
 
@@ -366,15 +361,14 @@ public class ProjectorTests
 				source.SetCanceled();
 				return source.Task;
 			};
-		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType(new[]
-		{
+		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType([
 			new ProjectionHandler<object>(typeof(object), handler1),
 			new ProjectionHandler<object>(typeof(int), handler2)
-		});
+		]);
 		var sut = SutFactory(resolver);
 
 		Assert.That(async () =>
-				await sut.ProjectAsync(new object(), new[] { new object(), new int() }),
+				await sut.ProjectAsync(new object(), [new object(), new int()]),
 			Throws.TypeOf<TaskCanceledException>());
 	}
 
@@ -388,11 +382,11 @@ public class ProjectorTests
 				source.SetException(new Exception("message"));
 				return source.Task;
 			};
-		ProjectionHandlerResolver<object> resolver = m => new[] { new ProjectionHandler<object>(typeof(object), handler) };
+		ProjectionHandlerResolver<object> resolver = m => [new ProjectionHandler<object>(typeof(object), handler)];
 		var sut = SutFactory(resolver);
 
 		Assert.That(async () =>
-				await sut.ProjectAsync(new object(), new[] { new object(), new object() }, new CancellationToken()),
+				await sut.ProjectAsync(new object(), [new object(), new object()], new CancellationToken()),
 			Throws.TypeOf<Exception>().And.Message.EqualTo("message"));
 	}
 
@@ -408,15 +402,14 @@ public class ProjectorTests
 				source.SetException(new Exception("message"));
 				return source.Task;
 			};
-		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType(new[]
-		{
+		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType([
 			new ProjectionHandler<object>(typeof(object), handler1),
 			new ProjectionHandler<object>(typeof(int), handler2)
-		});
+		]);
 		var sut = SutFactory(resolver);
 
 		Assert.That(async () =>
-				await sut.ProjectAsync(new object(), new[] { new object(), new int() }, new CancellationToken()),
+				await sut.ProjectAsync(new object(), [new object(), new int()], new CancellationToken()),
 			Throws.TypeOf<Exception>().And.Message.EqualTo("message"));
 	}
 
@@ -432,15 +425,14 @@ public class ProjectorTests
 				source.SetCanceled();
 				return source.Task;
 			};
-		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType(new[]
-		{
+		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType([
 			new ProjectionHandler<object>(typeof(object), handler1),
 			new ProjectionHandler<object>(typeof(int), handler2)
-		});
+		]);
 		var sut = SutFactory(resolver);
 
 		Assert.That(async () =>
-				await sut.ProjectAsync(new object(), new[] { new object(), new int() }, new CancellationToken()),
+				await sut.ProjectAsync(new object(), [new object(), new int()], new CancellationToken()),
 			Throws.TypeOf<TaskCanceledException>());
 	}
 
@@ -459,14 +451,13 @@ public class ProjectorTests
 				return source.Task;
 			};
 
-		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType(new[]
-		{
-			new ProjectionHandler<object>(typeof(object), handler1),
-		});
+		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType([
+			new ProjectionHandler<object>(typeof(object), handler1)
+		]);
 		var sut = SutFactory(resolver);
             
 		Assert.That(async () =>
-				await sut.ProjectAsync(new object(), new[] { new object() }, tcs.Token),
+				await sut.ProjectAsync(new object(), [new object()], tcs.Token),
 			Throws.TypeOf<TaskCanceledException>());
 	}
 
@@ -489,16 +480,15 @@ public class ProjectorTests
 				throw new InvalidOperationException("Should not happen!");
 			};
 
-		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType(new[]
-		{
+		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType([
 			new ProjectionHandler<object>(typeof(object), handler1),
 			new ProjectionHandler<object>(typeof(object), handler2),
 			new ProjectionHandler<object>(typeof(object), handler3)
-		});
+		]);
 		var sut = SutFactory(resolver);
 
 		Assert.That(async () =>
-				await sut.ProjectAsync(new object(), new[] { new object(), new object(), new object() }, tcs.Token),
+				await sut.ProjectAsync(new object(), [new object(), new object(), new object()], tcs.Token),
 			Throws.Nothing);
 	}
 
@@ -515,20 +505,19 @@ public class ProjectorTests
 				await Task.Delay(TimeSpan.FromDays(1), token);
 			};
 
-		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType(new[]
-		{
-			new ProjectionHandler<object>(typeof(object), handler1),
-		});
+		ProjectionHandlerResolver<object> resolver = Resolve.WhenEqualToHandlerMessageType([
+			new ProjectionHandler<object>(typeof(object), handler1)
+		]);
 		var sut = SutFactory(resolver);
 
 		Assert.That(async () =>
-				await sut.ProjectAsync(new object(), new[] { new object() }, tcs.Token),
+				await sut.ProjectAsync(new object(), [new object()], tcs.Token),
 			Throws.TypeOf<TaskCanceledException>());
 	}
 
 	private static Projector<object> SutFactory()
 	{
-		return SutFactory(message => new ProjectionHandler<object>[0]);
+		return SutFactory(message => Array.Empty<ProjectionHandler<object>>());
 	}
 
 	private static Projector<TConnection> SutFactory<TConnection>(ProjectionHandlerResolver<TConnection> resolver)

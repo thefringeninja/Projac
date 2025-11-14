@@ -9,7 +9,7 @@ public class TestDbTransaction : DbTransaction
 
 	public TestDbTransaction(TestDbConnection connection)
 	{
-		if (connection == null) throw new ArgumentNullException("connection");
+		ArgumentNullException.ThrowIfNull(connection);
 		_connection = connection;
 	}
 

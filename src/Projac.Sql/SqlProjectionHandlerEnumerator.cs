@@ -17,7 +17,7 @@ public class SqlProjectionHandlerEnumerator : IEnumerator<SqlProjectionHandler>
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="handlers"/> are <c>null</c>.</exception>
 	public SqlProjectionHandlerEnumerator(SqlProjectionHandler[] handlers)
 	{
-		if (handlers == null) throw new ArgumentNullException("handlers");
+		ArgumentNullException.ThrowIfNull(handlers);
 		_handlers = handlers;
 		_index = -1;
 	}

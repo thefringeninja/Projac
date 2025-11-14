@@ -21,8 +21,7 @@ public class TSqlNVarCharValue : IDbParameterValue
 	/// <exception cref="System.ArgumentNullException">Thrown when the <paramref name="value" /> is <c>null</c>.</exception>
 	public TSqlNVarCharValue(string value, TSqlNVarCharSize size)
 	{
-		if (value == null)
-			throw new ArgumentNullException("value");
+		ArgumentNullException.ThrowIfNull(value);
 		_value = value;
 		_size = size;
 	}

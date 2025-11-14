@@ -85,10 +85,9 @@ namespace Projac.Tests
                     _signalWhenWithoutCancellation = new Signal();
                     _signalWhenWithCancellation = new Signal();
                     _signalWhenSync = new Signal();
-                    _signals = new []
-                    {
-                        _signalWhenWithoutCancellation, _signalWhenWithCancellation, _signalWhenSync
-                    };
+                    _signals = [
+	                    _signalWhenWithoutCancellation, _signalWhenWithCancellation, _signalWhenSync
+                    ];
                     When<object>((_, __) => { _signalWhenWithoutCancellation.Set(); return TaskFactory(); });
                     When<object>((_, __, ___) => { _signalWhenWithCancellation.Set(); return TaskFactory(); });
                     When<object>((_, __) => { _signalWhenSync.Set(); });
@@ -182,7 +181,7 @@ namespace Projac.Tests
 
                 Assert.That(
                     sut.Handlers.Select(_ => _.Handler(null, null, CancellationToken.None)),
-                    Is.EquivalentTo(new[] { task }));
+                    Is.EquivalentTo([task]));
             }
 
             [Test]
@@ -273,7 +272,7 @@ namespace Projac.Tests
 
                 Assert.That(
                     sut.Handlers.Select(_ => _.Handler(null, null, CancellationToken.None)),
-                    Is.EquivalentTo(new[] { task }));
+                    Is.EquivalentTo([task]));
             }
 
             [Test]

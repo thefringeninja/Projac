@@ -20,7 +20,7 @@ public class SqlProjectionHandlerEnumeratorTests
 	public void DisposeDoesNotThrow()
 	{
 		Assert.DoesNotThrow(() =>
-			new SqlProjectionHandlerEnumerator(new SqlProjectionHandler[0]));
+			new SqlProjectionHandlerEnumerator([]));
 	}
 
 	[TestCaseSource("MoveNextCases")]
@@ -34,25 +34,23 @@ public class SqlProjectionHandlerEnumeratorTests
 	private static IEnumerable<TestCaseData> MoveNextCases()
 	{
 		//No handlers
-		var enumerator1 = new SqlProjectionHandlerEnumerator(new SqlProjectionHandler[0]);
+		var enumerator1 = new SqlProjectionHandlerEnumerator([]);
 		yield return new TestCaseData(enumerator1, false);
 		yield return new TestCaseData(enumerator1, false); //idempotency check
 
 		//1 handler
-		var enumerator2 = new SqlProjectionHandlerEnumerator(new[]
-		{
+		var enumerator2 = new SqlProjectionHandlerEnumerator([
 			HandlerFactory(CommandFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator2, true);
 		yield return new TestCaseData(enumerator2, false);
 		yield return new TestCaseData(enumerator2, false); //idempotency check
 
 		//2 handlers
-		var enumerator3 = new SqlProjectionHandlerEnumerator(new[]
-		{
+		var enumerator3 = new SqlProjectionHandlerEnumerator([
 			HandlerFactory(CommandFactory()),
 			HandlerFactory(CommandFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator3, true);
 		yield return new TestCaseData(enumerator3, true);
 		yield return new TestCaseData(enumerator3, false);
@@ -73,24 +71,22 @@ public class SqlProjectionHandlerEnumeratorTests
 	private static IEnumerable<TestCaseData> MoveNextAfterResetCases()
 	{
 		//No handlers
-		var enumerator1 = new SqlProjectionHandlerEnumerator(new SqlProjectionHandler[0]);
+		var enumerator1 = new SqlProjectionHandlerEnumerator([]);
 		yield return new TestCaseData(enumerator1, false);
 		yield return new TestCaseData(enumerator1, false);
 
 		//1 handler
-		var enumerator2 = new SqlProjectionHandlerEnumerator(new[]
-		{
+		var enumerator2 = new SqlProjectionHandlerEnumerator([
 			HandlerFactory(CommandFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator2, true);
 		yield return new TestCaseData(enumerator2, true);
 
 		//2 handlers
-		var enumerator3 = new SqlProjectionHandlerEnumerator(new[]
-		{
+		var enumerator3 = new SqlProjectionHandlerEnumerator([
 			HandlerFactory(CommandFactory()),
 			HandlerFactory(CommandFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator3, true);
 		yield return new TestCaseData(enumerator3, true);
 	}
@@ -104,22 +100,20 @@ public class SqlProjectionHandlerEnumeratorTests
 	private static IEnumerable<TestCaseData> ResetCases()
 	{
 		//No handlers
-		var enumerator1 = new SqlProjectionHandlerEnumerator(new SqlProjectionHandler[0]);
+		var enumerator1 = new SqlProjectionHandlerEnumerator([]);
 		yield return new TestCaseData(enumerator1);
 
 		//1 handler
-		var enumerator2 = new SqlProjectionHandlerEnumerator(new[]
-		{
+		var enumerator2 = new SqlProjectionHandlerEnumerator([
 			HandlerFactory(CommandFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator2);
 
 		//2 handlers
-		var enumerator3 = new SqlProjectionHandlerEnumerator(new[]
-		{
+		var enumerator3 = new SqlProjectionHandlerEnumerator([
 			HandlerFactory(CommandFactory()),
 			HandlerFactory(CommandFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator3);
 	}
 
@@ -142,22 +136,20 @@ public class SqlProjectionHandlerEnumeratorTests
 	private static IEnumerable<TestCaseData> CurrentNotStartedCases()
 	{
 		//No handlers
-		var enumerator1 = new SqlProjectionHandlerEnumerator(new SqlProjectionHandler[0]);
+		var enumerator1 = new SqlProjectionHandlerEnumerator([]);
 		yield return new TestCaseData(enumerator1);
 
 		//1 handler
-		var enumerator2 = new SqlProjectionHandlerEnumerator(new[]
-		{
+		var enumerator2 = new SqlProjectionHandlerEnumerator([
 			HandlerFactory(CommandFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator2);
 
 		//2 handlers
-		var enumerator3 = new SqlProjectionHandlerEnumerator(new[]
-		{
+		var enumerator3 = new SqlProjectionHandlerEnumerator([
 			HandlerFactory(CommandFactory()),
 			HandlerFactory(CommandFactory())
-		});
+		]);
 		yield return new TestCaseData(enumerator3);
 	}
 
@@ -180,24 +172,22 @@ public class SqlProjectionHandlerEnumeratorTests
 	private static IEnumerable<TestCaseData> CurrentCompletedCases()
 	{
 		//No handlers
-		var enumerator1 = new SqlProjectionHandlerEnumerator(new SqlProjectionHandler[0]);
+		var enumerator1 = new SqlProjectionHandlerEnumerator([]);
 		while (enumerator1.MoveNext()) { }
 		yield return new TestCaseData(enumerator1);
 
 		//1 handler
-		var enumerator2 = new SqlProjectionHandlerEnumerator(new[]
-		{
+		var enumerator2 = new SqlProjectionHandlerEnumerator([
 			HandlerFactory(CommandFactory())
-		});
+		]);
 		while (enumerator2.MoveNext()) { }
 		yield return new TestCaseData(enumerator2);
 
 		//2 handlers
-		var enumerator3 = new SqlProjectionHandlerEnumerator(new[]
-		{
+		var enumerator3 = new SqlProjectionHandlerEnumerator([
 			HandlerFactory(CommandFactory()),
 			HandlerFactory(CommandFactory())
-		});
+		]);
 		while (enumerator3.MoveNext()) { }
 		yield return new TestCaseData(enumerator3);
 	}
@@ -230,10 +220,9 @@ public class SqlProjectionHandlerEnumeratorTests
 
 		//1 handler
 		var command1 = CommandFactory();
-		var enumerator2 = new SqlProjectionHandlerEnumerator(new[]
-		{
+		var enumerator2 = new SqlProjectionHandlerEnumerator([
 			HandlerFactory(command1)
-		});
+		]);
 		yield return new TestCaseData(enumerator2, new[]
 		{
 			command1
@@ -242,11 +231,10 @@ public class SqlProjectionHandlerEnumeratorTests
 		//2 handlers
 		var command2 = CommandFactory();
 		var command3 = CommandFactory();
-		var enumerator3 = new SqlProjectionHandlerEnumerator(new[]
-		{
+		var enumerator3 = new SqlProjectionHandlerEnumerator([
 			HandlerFactory(command2),
 			HandlerFactory(command3)
-		});
+		]);
 		yield return new TestCaseData(enumerator3, new[]
 		{
 			command2
@@ -261,11 +249,11 @@ public class SqlProjectionHandlerEnumeratorTests
 	{
 		return new SqlProjectionHandler(
 			typeof(object),
-			o => new[] { command });
+			o => [command]);
 	}
 
 	private static SqlNonQueryCommand CommandFactory()
 	{
-		return new SqlNonQueryCommandStub("", new DbParameter[0], CommandType.Text);
+		return new SqlNonQueryCommandStub("", [], CommandType.Text);
 	}
 }

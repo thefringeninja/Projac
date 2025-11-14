@@ -14,8 +14,7 @@ public class Projector<TConnection>
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="resolver"/> is <c>null</c>.</exception>
 	public Projector(ProjectionHandlerResolver<TConnection> resolver)
 	{
-		if (resolver == null) 
-			throw new ArgumentNullException("resolver");
+		ArgumentNullException.ThrowIfNull(resolver);
 
 		_resolver = resolver;
 	}
@@ -46,7 +45,7 @@ public class Projector<TConnection>
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="connection"/> or <paramref name="message"/> is <c>null</c>.</exception>
 	public Task ProjectAsync(TConnection connection, object message, CancellationToken cancellationToken)
 	{
-		if (message == null) throw new ArgumentNullException("message");
+		ArgumentNullException.ThrowIfNull(message);
 
 		return 
 		(
@@ -81,7 +80,7 @@ public class Projector<TConnection>
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="connection"/> or <paramref name="messages"/> is <c>null</c>.</exception>
 	public Task ProjectAsync(TConnection connection, IEnumerable<object> messages, CancellationToken cancellationToken)
 	{
-		if (messages == null) throw new ArgumentNullException("messages");
+		ArgumentNullException.ThrowIfNull(messages);
 
 		return
 		(

@@ -12,19 +12,17 @@ public static class Resolve
 	/// <returns>A <see cref="SqlProjectionHandlerResolver">resolver</see>.</returns>
 	public static SqlProjectionHandlerResolver WhenEqualToHandlerMessageType(SqlProjectionHandler[] handlers)
 	{
-		if (handlers == null) 
-			throw new ArgumentNullException("handlers");
+		ArgumentNullException.ThrowIfNull(handlers);
 		var cache = handlers.
 			GroupBy(handler => handler.Message).
 			ToDictionary(@group => @group.Key, @group => @group.ToArray());
 		return message =>
 		{
-			if(message == null)
-				throw new ArgumentNullException("message");
+			ArgumentNullException.ThrowIfNull(message);
 			SqlProjectionHandler[] result;
 			return cache.TryGetValue(message.GetType(), out result) ? 
 				result : 
-				new SqlProjectionHandler[0];
+				[];
 		};
 	}
 
@@ -35,13 +33,11 @@ public static class Resolve
 	/// <returns>A <see cref="SqlProjectionHandlerResolver">resolver</see>.</returns>
 	public static SqlProjectionHandlerResolver WhenAssignableToHandlerMessageType(SqlProjectionHandler[] handlers)
 	{
-		if (handlers == null)
-			throw new ArgumentNullException("handlers");
+		ArgumentNullException.ThrowIfNull(handlers);
 		var cache = new Dictionary<Type, SqlProjectionHandler[]>();
 		return message =>
 		{
-			if (message == null)
-				throw new ArgumentNullException("message");
+			ArgumentNullException.ThrowIfNull(message);
 			SqlProjectionHandler[] result;
 			if (!cache.TryGetValue(message.GetType(), out result))
 			{

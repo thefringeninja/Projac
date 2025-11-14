@@ -11,7 +11,7 @@ public class AnonymousProjectionBuilder<TConnection>
 	///     Initializes a new instance of the <see cref="AnonymousProjectionBuilder{TConnection}" /> class.
 	/// </summary>
 	public AnonymousProjectionBuilder() :
-		this(new ProjectionHandler<TConnection>[0])
+		this([])
 	{
 	}
 
@@ -21,7 +21,7 @@ public class AnonymousProjectionBuilder<TConnection>
 	/// <exception cref="ArgumentNullException">Thrown if <paramref name="handlers"/> is <c>null</c>.</exception>
 	public AnonymousProjectionBuilder(ProjectionHandler<TConnection>[] handlers)
 	{
-		if (handlers == null) throw new ArgumentNullException("handlers");
+		ArgumentNullException.ThrowIfNull(handlers);
 		_handlers = handlers;
 	}
 
@@ -34,15 +34,14 @@ public class AnonymousProjectionBuilder<TConnection>
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="handler" /> is <c>null</c>.</exception>
 	public AnonymousProjectionBuilder<TConnection> When<TMessage>(Func<TConnection, TMessage, Task> handler)
 	{
-		if (handler == null) throw new ArgumentNullException("handler");
+		ArgumentNullException.ThrowIfNull(handler);
 		return new AnonymousProjectionBuilder<TConnection>(
 			_handlers.Concat(
-					new[]
-					{
-						new ProjectionHandler<TConnection>(
+				[
+					new ProjectionHandler<TConnection>(
 							typeof (TMessage),
 							(connection, message, token) => handler(connection, (TMessage) message))
-					}).
+				]).
 				ToArray());
 	}
 
@@ -55,21 +54,19 @@ public class AnonymousProjectionBuilder<TConnection>
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="handler" /> is <c>null</c>.</exception>
 	public AnonymousProjectionBuilder<TConnection> When<TMessage>(Action<TConnection, TMessage> handler)
 	{
-		if (handler == null)
-			throw new ArgumentNullException("handler");
+		ArgumentNullException.ThrowIfNull(handler);
 
 		return new AnonymousProjectionBuilder<TConnection>(
 			_handlers.Concat(
-					new[]
-					{
-						new ProjectionHandler<TConnection>(
+				[
+					new ProjectionHandler<TConnection>(
 							typeof (TMessage),
 							(connection, message, token) =>
 							{
 								handler(connection, (TMessage) message);
 								return Task.FromResult<object>(null);
 							})
-					}).
+				]).
 				ToArray());
 	}
 
@@ -82,15 +79,14 @@ public class AnonymousProjectionBuilder<TConnection>
 	/// <exception cref="System.ArgumentNullException">Thrown when <paramref name="handler" /> is <c>null</c>.</exception>
 	public AnonymousProjectionBuilder<TConnection> When<TMessage>(Func<TConnection, TMessage, CancellationToken, Task> handler)
 	{
-		if (handler == null) throw new ArgumentNullException("handler");
+		ArgumentNullException.ThrowIfNull(handler);
 		return new AnonymousProjectionBuilder<TConnection>(
 			_handlers.Concat(
-					new[]
-					{
-						new ProjectionHandler<TConnection>(
+				[
+					new ProjectionHandler<TConnection>(
 							typeof (TMessage),
 							(connection, message, token) => handler(connection, (TMessage) message, token))
-					}).
+				]).
 				ToArray());
 	}
 
